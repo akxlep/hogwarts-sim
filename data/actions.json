@@ -1,0 +1,327 @@
+[
+    {
+        "location": "library",
+        "directions": [
+            {
+                "id": "study",
+                "name": "学习",
+                "icon": "📖",
+                "description": "阅读课本，完成作业，提升知识",
+                "summary": "你安静地在图书馆度过了几个小时，记下了不少笔记。",
+                "daily_event_chance": 30,
+                "reward": { "wisdom": 5 }
+            },
+            {
+                "id": "explore",
+                "name": "探索",
+                "icon": "🔍",
+                "description": "在书架间闲逛，寻找有趣的书或秘密",
+                "summary": "你在书架之间穿行，发现了一些有趣的书名。",
+                "daily_event_chance": 40,
+                "reward": { "cunning": 3, "wisdom": 2 }
+            },
+            {
+                "id": "socialize",
+                "name": "社交",
+                "icon": "💬",
+                "description": "和同在图书馆的同学小声交谈",
+                "summary": "你和图书馆里的其他学生轻声聊了几句。",
+                "daily_event_chance": 30,
+                "reward": { "charm": 3, "wisdom": 1 }
+            }
+        ]
+    },
+    {
+        "location": "great_hall",
+        "directions": [
+            {
+                "id": "socialize",
+                "name": "社交",
+                "icon": "💬",
+                "description": "和同学们一起用餐、聊天",
+                "summary": "你在大厅里和同学们一起吃饭聊天，认识了一些新面孔。",
+                "daily_event_chance": 60,
+                "reward": { "charm": 5 }
+            },
+            {
+                "id": "observe",
+                "name": "观察",
+                "icon": "👀",
+                "description": "观察大厅里的人们，留意细节",
+                "summary": "你坐在长桌旁，观察着大厅里来来往往的学生和教授。",
+                "daily_event_chance": 35,
+                "reward": { "cunning": 3, "wisdom": 2 }
+            }
+        ]
+    },
+    {
+        "location": "corridor",
+        "directions": [
+            {
+                "id": "explore",
+                "name": "探索",
+                "icon": "🔍",
+                "description": "在走廊里闲逛，寻找密道和秘密",
+                "summary": "你在城堡的走廊里徘徊，留意着每一幅画像和每一副盔甲。",
+                "daily_event_chance": 35,
+                "reward": { "cunning": 4, "courage": 2 }
+            },
+            {
+                "id": "socialize",
+                "name": "偶遇同学",
+                "icon": "💬",
+                "description": "走廊是碰见人的好地方",
+                "summary": "你在走廊里碰到了一些同学，停下来聊了几句。",
+                "daily_event_chance": 45,
+                "reward": { "charm": 3, "cunning": 1 }
+            },
+            {
+                "id": "observe",
+                "name": "观察画像",
+                "icon": "👀",
+                "description": "观察走廊里的画像和盔甲",
+                "summary": "你驻足观察走廊里的画像——它们也在观察你。",
+                "daily_event_chance": 30,
+                "reward": { "wisdom": 2, "cunning": 2 }
+            }
+        ]
+    },
+    {
+        "location": "forbidden_forest",
+        "directions": [
+            {
+                "id": "explore",
+                "name": "深入禁林",
+                "icon": "🔍",
+                "description": "进入禁林深处，探索未知",
+                "summary": "你在禁林边缘徘徊，心跳加速。",
+                "daily_event_chance": 40,
+                "reward": { "courage": 6 }
+            },
+            {
+                "id": "study",
+                "name": "研究植物",
+                "icon": "🌿",
+                "description": "在禁林边缘研究稀有草药",
+                "summary": "你在禁林边缘发现了几株课本上提到的稀有植物。",
+                "daily_event_chance": 35,
+                "reward": { "wisdom": 3, "courage": 2 }
+            },
+            {
+                "id": "help",
+                "name": "帮海格巡林",
+                "icon": "🤝",
+                "description": "跟着海格在禁林边缘巡逻",
+                "summary": "你跟着海格在禁林边缘走了一圈，他指给你看了不少有趣的东西。",
+                "daily_event_chance": 40,
+                "reward": { "courage": 3, "charm": 2 }
+            }
+        ]
+    },
+    {
+        "location": "quidditch_pitch",
+        "directions": [
+            {
+                "id": "train",
+                "name": "训练",
+                "icon": "🧹",
+                "description": "进行魁地奇训练，提升飞行技巧",
+                "summary": "你在魁地奇球场上挥洒汗水，练习飞行技巧。",
+                "daily_event_chance": 30,
+                "reward": { "courage": 4, "charm": 2 }
+            },
+            {
+                "id": "observe",
+                "name": "观看训练",
+                "icon": "👀",
+                "description": "坐在看台上观看球队训练",
+                "summary": "你坐在看台上，观看魁地奇球队的训练。",
+                "daily_event_chance": 25,
+                "reward": { "wisdom": 2, "charm": 1 }
+            },
+            {
+                "id": "socialize",
+                "name": "和球迷聊天",
+                "icon": "💬",
+                "description": "和球场边的魁地奇爱好者们闲聊",
+                "summary": "你和球场边的几个魁地奇爱好者聊了聊最近的比赛。",
+                "daily_event_chance": 40,
+                "reward": { "charm": 3 }
+            }
+        ]
+    },
+    {
+        "location": "astronomy_tower",
+        "directions": [
+            {
+                "id": "study",
+                "name": "观星",
+                "icon": "🔭",
+                "description": "观察星象，学习天文知识",
+                "summary": "你在天文塔上仰望星空，辨认着各个星座。",
+                "daily_event_chance": 25,
+                "reward": { "wisdom": 5 }
+            },
+            {
+                "id": "explore",
+                "name": "探索塔楼",
+                "icon": "🔍",
+                "description": "在天文塔的楼梯和角落里探索",
+                "summary": "你在天文塔的楼梯间里转了转，发现了一些有趣的角落。",
+                "daily_event_chance": 35,
+                "reward": { "cunning": 3, "courage": 2 }
+            },
+            {
+                "id": "rest",
+                "name": "看风景",
+                "icon": "🌄",
+                "description": "凭栏远眺，俯瞰整个霍格沃茨",
+                "summary": "你靠在栏杆上，俯瞰着霍格沃茨城堡和远处的山脉。",
+                "daily_event_chance": 20,
+                "reward": { "charm": 1, "wisdom": 1 }
+            }
+        ]
+    },
+    {
+        "location": "room_of_requirement",
+        "directions": [
+            {
+                "id": "explore",
+                "name": "探索",
+                "icon": "🔍",
+                "description": "寻找这个神秘的房间，探索它的秘密",
+                "summary": "你在有求必应屋里发现了一些奇妙的东西。",
+                "daily_event_chance": 45,
+                "reward": { "cunning": 5, "wisdom": 3 }
+            },
+            {
+                "id": "train",
+                "name": "秘密练习",
+                "icon": "🎯",
+                "description": "找一个没人打扰的地方练习魔咒",
+                "summary": "你在有求必应屋里独自练习了一会儿魔咒。",
+                "daily_event_chance": 40,
+                "reward": { "courage": 3, "wisdom": 2 }
+            },
+            {
+                "id": "rest",
+                "name": "藏身独处",
+                "icon": "🛋️",
+                "description": "需要一个没人能找到你的地方",
+                "summary": "你在有求必应屋里找到了一个安静舒适的角落。",
+                "daily_event_chance": 25,
+                "reward": { "cunning": 2, "wisdom": 1 }
+            }
+        ]
+    },
+    {
+        "location": "hospital_wing",
+        "directions": [
+            {
+                "id": "help",
+                "name": "帮忙",
+                "icon": "💊",
+                "description": "帮助庞弗雷夫人整理药材、照顾病人",
+                "summary": "你帮庞弗雷夫人整理药材，学到了一些医疗知识。",
+                "daily_event_chance": 35,
+                "reward": { "wisdom": 2, "charm": 3 }
+            },
+            {
+                "id": "rest",
+                "name": "休养",
+                "icon": "🛌",
+                "description": "躺在床上接受治疗",
+                "summary": "你在校医院的病床上躺了一会儿，感觉好多了。",
+                "daily_event_chance": 0,
+                "reward": {}
+            }
+        ]
+    },
+    {
+        "location": "owlery",
+        "directions": [
+            {
+                "id": "explore",
+                "name": "探索",
+                "icon": "🔍",
+                "description": "在棚屋里四处看看",
+                "summary": "你在猫头鹰棚屋里转了转，观察着不同种类的猫头鹰。",
+                "daily_event_chance": 35,
+                "reward": { "cunning": 2, "courage": 1 }
+            },
+            {
+                "id": "observe",
+                "name": "观察猫头鹰",
+                "icon": "👀",
+                "description": "观察不同种类的猫头鹰，了解它们的习性",
+                "summary": "你花了一些时间观察棚屋里的猫头鹰，记住了几个品种。",
+                "daily_event_chance": 30,
+                "reward": { "wisdom": 2, "cunning": 1 }
+            },
+            {
+                "id": "rest",
+                "name": "看风景",
+                "icon": "🌄",
+                "description": "坐在窗边吹风，看猫头鹰飞过城堡",
+                "summary": "你坐在窗边，看着猫头鹰在夕阳中盘旋。",
+                "daily_event_chance": 20,
+                "reward": { "courage": 1, "wisdom": 1 }
+            }
+        ]
+    },
+    {
+        "location": "common_room",
+        "directions": [
+            {
+                "id": "socialize",
+                "name": "和同学聊天",
+                "icon": "💬",
+                "description": "和同在休息室的学院同学闲聊",
+                "summary": "你和公共休息室里的同学们聊了一会儿。",
+                "daily_event_chance": 55,
+                "reward": { "charm": 3 }
+            },
+            {
+                "id": "rest",
+                "name": "在炉火旁放松",
+                "icon": "🛋️",
+                "description": "窝在扶手椅里，享受难得的闲暇",
+                "summary": "你在公共休息室的炉火旁度过了一段惬意的时光。",
+                "daily_event_chance": 30,
+                "reward": { "charm": 1, "wisdom": 1 }
+            },
+            {
+                "id": "game",
+                "name": "下巫师棋",
+                "icon": "♟️",
+                "description": "找人下棋，或者围观别人对弈",
+                "summary": "你在公共休息室里观战了一局激烈的巫师棋。",
+                "daily_event_chance": 40,
+                "reward": { "cunning": 2, "charm": 1 }
+            }
+        ]
+    },
+    {
+        "location": "black_lake",
+        "directions": [
+            {
+                "id": "explore",
+                "name": "湖边漫步",
+                "icon": "🚶",
+                "description": "沿着湖岸散步，看看有没有有趣的东西",
+                "summary": "你在黑湖边散步，湖水在阳光下泛着波光。",
+                "daily_event_chance": 40,
+                "reward": { "cunning": 2, "wisdom": 2 }
+            },
+            {
+                "id": "rest",
+                "name": "喂巨乌贼",
+                "icon": "🍞",
+                "description": "往湖里扔面包，巨乌贼似乎很喜欢",
+                "summary": "你往湖里扔了一些面包屑，巨乌贼的触手懒洋洋地伸出来接住了。",
+                "daily_event_chance": 30,
+                "reward": { "charm": 2, "courage": 1 }
+            }
+        ]
+    }
+]

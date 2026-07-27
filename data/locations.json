@@ -1,0 +1,13 @@
+[
+  { "id": "library", "name": "图书馆", "icon": "📚" },
+  { "id": "great_hall", "name": "大厅", "icon": "🏰" },
+  { "id": "corridor", "name": "走廊", "icon": "🚪" },
+  {"id": "common_room","name": "公共休息室","icon": "🛋️"},
+  {"id": "black_lake","name": "黑湖","icon": "🌊"},
+  { "id": "quidditch_pitch", "name": "魁地奇球场", "icon": "🏟️" },
+  {"id": "owlery","name": "猫头鹰棚屋","icon": "🦉"},
+  { "id": "astronomy_tower", "name": "天文塔", "icon": "🛕" },
+  { "id": "room_of_requirement", "name": "有求必应屋", "icon": "🕯️" },
+  { "id": "hospital_wing", "name": "校医院", "icon": "🏥" },
+  { "id": "forbidden_forest", "name": "禁林", "icon": "🌲", "unlock_condition": { "week": { "min": 2 } } }
+]

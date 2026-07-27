@@ -1,0 +1,74 @@
+[
+    {
+        "id": "harry_potter",
+        "name": "哈利·波特",
+        "house": "格兰芬多",
+        "year": 1,
+        "identity": "大难不死的男孩·找球手",
+        "personality": "勇敢、重情义、厌恶被特殊对待、偶尔冲动、对朋友极度忠诚",
+        "likes": ["魁地奇", "隐形衣夜游", "和罗恩赫敏待在一起"],
+        "dislikes": ["被当成救世主围观", "斯内普的刁难", "马尔福的挑衅"],
+        "secret": "厄里斯魔镜里看到父母，伤疤会因伏地魔而疼",
+        "daily_locations": ["great_hall", "quidditch_pitch", "corridor", "forbidden_forest"],
+        "tag_thresholds": {
+            "羁绊": { "affection_min": 60, "trigger_event": true },
+            "对手": { "trigger_event": true },
+            "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+            "恋爱": { "required_tag": "羁绊", "affection_min": 80, "trigger_event": true }
+        }
+    },
+    {
+        "id": "ron_weasley",
+        "name": "罗恩·韦斯莱",
+        "house": "格兰芬多",
+        "year": 1,
+        "identity": "纯血统穷小子·韦斯莱家第六子",
+        "personality": "幽默、爱吃、偶尔自卑、忠诚但有嫉妒心、关键时刻从不退缩",
+        "likes": ["巫师棋", "魁地奇", "妈妈的料理", "吐槽斯内普"],
+        "dislikes": ["被嘲笑穷", "二手用品", "蜘蛛", "马尔福炫耀"],
+        "secret": "厄里斯魔镜里看到自己是魁地奇队长和学生会主席",
+        "daily_locations": ["great_hall", "corridor", "quidditch_pitch"],
+        "tag_thresholds": {
+            "羁绊": { "affection_min": 50, "trigger_event": true },
+            "对手": { "trigger_event": true },
+            "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+            "恋爱": { "required_tag": "羁绊", "affection_min": 70, "trigger_event": true }
+        }
+    },
+    {
+        "id": "hermione_granger",
+        "name": "赫敏·格兰杰",
+        "house": "格兰芬多",
+        "year": 1,
+        "identity": "年级第一学霸·麻瓜出身",
+        "personality": "聪明绝顶、正义感强、有些唠叨、脆弱时躲起来哭、对规则既遵守又打破",
+        "likes": ["图书馆", "回答问题", "帮助弱者", "制定复习计划"],
+        "dislikes": ["被嘲笑万事通", "看到朋友不学习", "不公平的规则"],
+        "secret": "万圣节躲在厕所哭是因为听到了罗恩的嘲讽",
+        "daily_locations": ["library", "great_hall", "corridor"],
+        "tag_thresholds": {
+            "羁绊": { "affection_min": 50, "trigger_event": true },
+            "对手": { "trigger_event": true },
+            "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+            "恋爱": { "required_tag": "羁绊", "affection_min": 75, "trigger_event": true }
+        }
+    },
+    {
+        "id": "draco_malfoy",
+        "name": "德拉科·马尔福",
+        "house": "斯莱特林",
+        "year": 1,
+        "identity": "纯血统家族继承人·斯莱特林找球手",
+        "personality": "傲慢、渴望父亲认可、欺软怕硬但非真正残忍、内心有不安全感",
+        "likes": ["炫耀家族财富", "打击哈利及其朋友", "被关注"],
+        "dislikes": ["被当众羞辱", "父亲失望", "被拿来和哈利比较"],
+        "secret": "害怕伏地魔，内心深处对纯血统论并非完全笃定",
+        "daily_locations": ["great_hall", "corridor", "quidditch_pitch"],
+        "tag_thresholds": {
+            "羁绊": { "affection_min": 50, "trigger_event": true },
+            "对手": { "trigger_event": true },
+            "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+            "恋爱": { "required_tag": "羁绊", "affection_min": 60, "trigger_event": true }
+        }
+    }
+]

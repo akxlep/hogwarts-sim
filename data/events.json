@@ -1,0 +1,1078 @@
+[
+{
+    "id": "library_study_disturbance",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 3,
+    "trigger_condition": {},
+    "title": "图书馆的小插曲",
+    "description_variants": [
+        {
+            "text": "一股甜腻的糖浆味飘了过来。你抬头，看到对面桌的赫奇帕奇男生正偷偷撕开一块糖浆馅饼的包装。平斯夫人像嗅到血腥味的鲨鱼一样冲了过来，把他赶了出去。"
+        },
+        {
+            "text": "一只纸青蛙从隔壁桌跳到你摊开的《魔法史》上，腿还在蹬。远处一个格兰芬多女生拼命朝你比口型：“对不起——”"
+        },
+        {
+            "text": "啪嗒。你旁边桌上的墨水瓶突然翻了，紫色墨水洒了一桌。一个二年级学生手忙脚乱地找魔杖，但显然还没学会清理咒。"
+        },
+        {
+            "text": "窗外传来一阵细微的敲击声。你转头，看到一只猫头鹰正用喙轻轻啄着玻璃窗，爪子上绑着一封信。它大概找错窗口了。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "无视干扰，继续埋头苦读",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_living_book",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "一本不太安分的书",
+    "description_variants": [
+        {
+            "text": "你从书架上抽出一本《妖怪们的妖怪书》，书脊在你手中蠕动，封面猛地张开，露出一排细密的牙齿。它咬了你的手指，然后安静下来，仿佛什么都没发生。"
+        },
+        {
+            "text": "你翻开一本《隐形术与幻身咒》，发现里面全是空白页。你困惑地翻了好几页，突然意识到——文字大概需要你用魔杖点一下才会显形。"
+        },
+        {
+            "text": "你找到一本《被遗忘的古老魔药》，但每翻一页，前一页的内容就消失了。你只能读一遍。"
+        },
+        {
+            "text": "你碰掉了一本薄薄的小册子。弯腰捡起来时，发现封面上写着《如何在不被平斯夫人发现的情况下偷看禁书》。你左右看了看——平斯夫人正在远处整理书架。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "研究一下这本书",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_dancing_letters",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 2,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 25 } }
+    },
+    "title": "会跳舞的字母",
+    "description_variants": [
+        {
+            "text": "你翻开一本旧版《标准咒语》，发现某一页的字母正在缓慢移动。它们像蚂蚁一样排成一行，然后突然散开，重新组合成一句话：“如果你读得懂，那这本书就太无聊了。”"
+        },
+        {
+            "text": "你摊开变形术课本，发现插图里的猫正在追自己尾巴——然后它注意到你，停下来朝你眨了眨眼。"
+        },
+        {
+            "text": "你正在读魔药配方，页面上的数字突然跳动了一下，把“3”改成了“2”。你皱起眉。是印刷错误，还是这本书在调皮？"
+        }
+    ],
+    "choices": [
+        {
+            "text": "翻到下一页看看还有什么花样",
+            "effect": { "attributes": { "wisdom": 1, "cunning": 1 } }
+        },
+        {
+            "text": "合上书，换一本正常点的",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_giant_squid",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 1,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 20 } }
+    },
+    "title": "窗外有东西在动",
+    "description_variants": [
+        {
+            "text": "你正埋头抄写魔药配方，余光突然捕捉到窗外有什么在移动。黑湖的水面在月光下泛着银光。一只巨大的触手从水面下探出来，懒洋洋地拍了一下窗户玻璃，然后慢慢缩回去了。"
+        },
+        {
+            "text": "窗外飘起了细雪，黑湖的湖面边缘开始结冰。一只乌贼触手从冰窟窿里伸出来，把浮冰推到一边。你看了好一会儿才继续学习。"
+        },
+        {
+            "text": "阳光在水面上闪着碎金。你看到巨乌贼的轮廓在浅水处缓缓游过，影子投在湖底的石头上。它大概在晒太阳。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "继续写作业",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_silent_spell",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 40 } },
+        "event_not_completed": "library_study_silent_spell"
+    },
+    "title": "自习室里的高年级学生",
+    "description": "你在图书馆最深处找到角落坐下。隔壁自习室里传来一阵低沉的嗡嗡声，像一只巨大的蜜蜂被关在柜子里。\n\n你透过门缝瞥了一眼——一个拉文克劳高年级女生正对着悬浮的金属球念咒。球体表面布满细密符文，随着她的咒语旋转，越转越快。\n\n她注意到了你的目光。金属球啪地落在桌上。门被一股无形的力量推开了。\n\n“偷看别人练咒语是很不礼貌的。”她说。但她嘴角有一丝笑意。“不过既然你已经看到了——你知道无声咒吗？”",
+    "choices": [
+        {
+            "text": "“不太了解，但我想知道。”",
+            "effect": { "attributes": { "wisdom": 2 } },
+            "follow_up": {
+                "description": "她点了点头，拿起金属球。“N.E.W.T.级别的咒语——你还太早了。但记住，最好的咒语是那些不需要说出来的。”\n\n她把球扔给你，你接住了。球在你掌心里余温尚存。\n\n“下次敲门。”她转身收拾东西。临走前，她在门口停了一下。“不过你倒是挺有眼光的——选了图书馆最安静的角落。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "“抱歉，我不是有意偷看的。”",
+            "condition": { "attribute": { "charm": { "min": 30 } } },
+            "effect": { "attributes": { "charm": 1, "wisdom": 1 } },
+            "follow_up": {
+                "description": "“没关系。”她把魔杖插回口袋，语气缓和了一些。“反正我该休息了。”\n\n她推开门走出来，经过你身边时低头看了一眼你摊开的书。“《标准咒语·初级》？一年级？”她笑了笑，有点怀念。“好好学。沉默咒要到六年级，但提前了解没坏处。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "“我只是在找安静的地方看书。”",
+            "effect": { "attributes": { "wisdom": 1, "cunning": 1 } },
+            "follow_up": {
+                "description": "“那就继续看你的书吧。”她的语气不冷不热。\n\n门在你面前轻轻关上了。但你注意到桌上有一张纸片——她留下了一张画着简单符文的便签。角落里写着一行小字：“无声咒的第一步：先学会在心里念咒。”",
+                "effect": {}
+            }
+        }
+    ]
+},
+
+
+
+
+
+
+
+
+
+{
+    "id": "library_explore_moving_shelf",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "会移动的书架",
+    "description_variants": [
+        {
+            "text": "你伸手去够顶层的一本厚书，指尖刚碰到书脊，整个书架突然向左边滑动了半英寸。你吓了一跳，缩回手。书架又安静了。也许只是城堡在“呼吸”——但你在书架后面看到了一小段通往深处的楼梯，被灰尘覆盖着。"
+        },
+        {
+            "text": "你靠在一个书架上休息，肩膀不小心压到了一本凸出的书。咔嗒一声，书架旋转了九十度，把你带进了另一条过道。你回头一看，书架已经恢复了原位。你面前是一排关于“古代魔文”的藏书——你之前从没找到过这个区域。"
+        },
+        {
+            "text": "你在书架之间穿行时，注意到两排书架之间的距离似乎比刚才更窄了。你停下来，仔细观察——它们在极其缓慢地靠近，像是想把某本书夹在中间。你侧身挤出来，决定下次带个朋友一起来。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "探索新发现的区域",
+            "effect": { "attributes": { "cunning": 1, "courage": 1 } }
+        },
+        {
+            "text": "记住位置，下次再来",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_graffiti",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "某人的涂鸦",
+    "description_variants": [
+        {
+            "text": "你翻开一本《标准咒语·初级》，发现某一页的页脚有一行潦草的字迹：“斯内普的魔药课——加一滴老鼠胆汁，不是两滴！！！切记！！！”笔迹压得很重，显然是在极度焦虑下写的。下面还有一行不同颜色的笔迹，写着“你救了我的命。——H.G.”。你盯着那行字看了一会儿，忍不住笑了一下。"
+        },
+        {
+            "text": "一本《魔法史》的空白页上画满了简笔画。有人用火柴人画了一整场巫师决斗：两个小人互相发射魔咒，第三个小人从后面偷偷靠近，第四个站在旁边举手。图下面写着一行字：“巴希达·巴沙特要是看到这个，大概会从坟墓里爬出来。——E.M.”"
+        }
+    ],
+    "choices": [
+        {
+            "text": "翻翻看还有没有别的涂鸦",
+            "effect": { "attributes": { "wisdom": 1 } }
+        },
+        {
+            "text": "在下面添一行自己的回复",
+            "effect": { "attributes": { "charm": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_biting_book",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "被书咬了之后",
+    "description_variants": [
+        {
+            "text": "你刚抽出一本《妖怪们的妖怪书》，它立刻张开书脊上的嘴，狠狠咬了一下你的拇指。你本能地把书摔在桌上。平斯夫人从远处投来一记眼刀。你赶紧把书翻过来，用一根散落的鞋带把它捆住。它安静了，但还在微微颤抖，像是在生气。"
+        },
+        {
+            "text": "你在翻阅一本毛茸茸的旧书时，书页突然合拢，夹住了你的手指。不疼，但拔不出来。你用力拽了几下，书才松口。封面上的书名是《被遗忘的魔药配方》。你觉得自己被一本魔药书嫌弃了。"
+        },
+        {
+            "text": "你碰到一本封面上长满尖刺的植物图鉴——《食肉植物与它们的食谱》。它没有咬你，但它发出了一声低沉的咕噜声，像是饿了。你决定不要翻开它。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "用鞋带把书捆起来",
+            "effect": { "attributes": { "courage": 1 } }
+        },
+        {
+            "text": "抚摸书脊，试着安抚它",
+            "effect": { "attributes": { "wisdom": 1, "charm": 1 } }
+        },
+        {
+            "text": "把书放回去，换一本正常的",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_hidden_door",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 25 } },
+        "event_not_completed": "library_explore_hidden_door"
+    },
+    "title": "被遗忘的角落",
+    "description": "图书馆最深处的书架尽头，你发现了一扇漆面斑驳的小门。铜把手已经生锈，门缝里透出淡淡的墨水和旧羊皮纸的味道。门上有一块磨损的黄铜铭牌，上面刻着：“仅供资深图书管理员使用——或任何知道怎么敲门的人。”\n\n你犹豫了一下。这扇门可能已经几十年没被打开过了。",
+    "choices": [
+        {
+            "text": "轻轻敲门，试试运气",
+            "effect": { "attributes": { "courage": 1, "charm": 1 } },
+            "follow_up": {
+                "description": "你用指节在门上轻轻敲了三下。沉默。然后——门把手自己转动了。门后是一间极小的阅览室，只有一张桌子和一把椅子。桌上摊着一本翻到一半的书，旁边的墨水瓶还没有干。\n\n有人刚在这里。但房间里没有别人。\n\n你记住了这个地方。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "记住位置，以后再来",
+            "effect": { "attributes": { "cunning": 2 } },
+            "follow_up": {
+                "description": "现在还不是时候。但你记下了——最深处的书架，第三排，靠着墙。也许下次带个同伴，或者等夜深人静的时候再来。谨慎从来不是坏事。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "library_explore_snape_notes",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "cunning": { "min": 30 } },
+        "event_not_completed": "library_explore_snape_notes"
+    },
+    "title": "前任的笔记",
+    "description": "你从书架上抽出一本破旧的《魔法药剂与药水》。翻开扉页，上面写着一个名字：“西弗勒斯·斯内普”。\n\n下面是密密麻麻的批注。几乎每一道配方的边上都修改了步骤或替换了原料。字迹锐利而紧凑，像是在和课本作者争论。有一条批注尤其醒目：\n\n“官方配方是错的。用月长石粉代替珍珠粉，效果提升三倍。试试看——如果你不是蠢货的话。”\n\n你抬头看了看四周。这是斯内普学生时代的课本。上面的每一行字都在告诉你一件事：他从来就不是一个普通的学生。",
+    "choices": [
+        {
+            "text": "仔细阅读批注，记下要点",
+            "effect": { "attributes": { "wisdom": 2 } },
+            "follow_up": {
+                "description": "你翻了几页。斯内普的批注不仅修改了配方，还有对课本作者的嘲讽、对教学大纲的质疑、以及几条你自己都没听过的魔药技巧。你撕下一张空白羊皮纸，匆匆记下了最关键的几条。\n\n下次魔药课，也许能派上用场——虽然你大概不会告诉别人这些技巧是从哪来的。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "把书借走，私下研究",
+            "effect": { "attributes": { "cunning": 1, "charm": -1 } },
+            "follow_up": {
+                "description": "你把书塞进书包。平斯夫人没有注意到。这是斯内普的私人批注——你不确定他是否愿意让别人看到。但你更不确定自己是否愿意把它放回去。\n\n有些知识太珍贵了，不能留在公共书架上。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "library_explore_duel_note",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 4,
+    "trigger_condition": {
+        "tag_required": ["夜游经历"],
+        "event_not_completed": "library_explore_duel_note"
+    },
+    "title": "夜游留下的痕迹",
+    "description": "你在一本厚重的《霍格沃茨校规》里发现了一张对折的羊皮纸。上面是马尔福的笔迹：\n\n“今晚，奖品陈列室，巫师决斗。如果你敢的话，波特。——M.”\n\n下面有人用红墨水潦草地回复：“他没来。他是骗子。——H.P.”\n\n再下面是一行整洁的字迹，墨水的颜色和前两行都不同：“我早就说了。——H.G.”\n\n背面还有一行铅笔字，几乎看不清楚：“我真的不该跟来的。——N.L.”",
+    "choices": [
+        {
+            "text": "把纸条收好，留作纪念",
+            "effect": { "attributes": { "charm": 1 } },
+            "follow_up": {
+                "description": "你把这四行字小心地折好，放进口袋。马尔福的陷阱，哈利的愤怒，赫敏的无奈，还有纳威偷偷加上的那句话。\n\n也许有一天你会把这纸条还给它的主人——或者留作霍格沃茨回忆的一部分。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "模仿笔迹，加一行自己的话",
+            "effect": { "attributes": { "cunning": 2 } },
+            "follow_up": {
+                "description": "你拿起羽毛笔，在赫敏那行字下面加了一句：“我也在场。——你猜是谁。”\n\n然后你把纸条放回书里。也许很多年后，会有人翻开这本书，看到这五行字，猜测那晚到底有多少人参与了这场根本没有发生的决斗。",
+                "effect": {}
+            }
+        }
+    ]
+},
+
+
+
+
+
+
+
+  {
+    "id": "prologue_1",
+    "phase": "prologue",
+    "order": 1,
+    "title": "~ 序章 · 抵达 ~",
+    "description": "夜骐拉着马车穿过铸铁大门，你第一次看见了霍格沃茨城堡。灯火在无数窗户后闪烁，倒映在黑湖的水面上。\n\n海格高大的身影出现在站台上，他低头看着你，微笑道：\n\n“你是今年的新生吧？叫什么名字？”",
+    "input": {
+      "key": "player_name",
+      "placeholder": "输入你的名字"
+    }
+  },
+{
+    "id": "prologue_2",
+    "phase": "prologue",
+    "order": 2,
+    "title": "~ 序章 · 分院 ~",
+    "description": "麦格教授念到你的名字。你走向那把古老的分院帽，它在凳子上微微抖动。\n\n帽子扣在你头上的瞬间，一个细微的声音在你耳边响起。\n\n“嗯……有意思。一个特别的孩子——或者说，特别的年轻人？请原谅，我老了，有时候分不太清。你应该被称作——”",
+    "choices": [
+        {
+            "text": "“年轻的女士。”",
+            "effect": { "set_gender": "female" },
+            "follow_up": {
+                "description": "“好的，年轻的女士。”分院帽的声音带着笑意。“那么，你想去哪里？”",
+                "sub_choices": [
+                    {
+                        "text": "🦁 格兰芬多 —— 勇气与胆识",
+                        "effect": { "attributes": { "courage": 15 }, "house": "格兰芬多", "tags_add": ["狮院学子"] }
+                    },
+                    {
+                        "text": "🐍 斯莱特林 —— 野心与狡黠",
+                        "effect": { "attributes": { "cunning": 15 }, "house": "斯莱特林", "tags_add": ["蛇院学子"] }
+                    },
+                    {
+                        "text": "🦡 赫奇帕奇 —— 忠诚与勤劳",
+                        "effect": { "attributes": { "charm": 15 }, "house": "赫奇帕奇", "tags_add": ["獾院学子"] }
+                    },
+                    {
+                        "text": "🦅 拉文克劳 —— 智慧与创意",
+                        "effect": { "attributes": { "wisdom": 15 }, "house": "拉文克劳", "tags_add": ["鹰院学子"] }
+                    }
+                ]
+            }
+        },
+        {
+            "text": "“年轻的先生。”",
+            "effect": { "set_gender": "male" },
+            "follow_up": {
+                "description": "“好的，年轻的先生。”分院帽的声音带着笑意。“那么，你想去哪里？”",
+                "sub_choices": [
+                    {
+                        "text": "🦁 格兰芬多 —— 勇气与胆识",
+                        "effect": { "attributes": { "courage": 15 }, "house": "格兰芬多", "tags_add": ["狮院学子"] }
+                    },
+                    {
+                        "text": "🐍 斯莱特林 —— 野心与狡黠",
+                        "effect": { "attributes": { "cunning": 15 }, "house": "斯莱特林", "tags_add": ["蛇院学子"] }
+                    },
+                    {
+                        "text": "🦡 赫奇帕奇 —— 忠诚与勤劳",
+                        "effect": { "attributes": { "charm": 15 }, "house": "赫奇帕奇", "tags_add": ["獾院学子"] }
+                    },
+                    {
+                        "text": "🦅 拉文克劳 —— 智慧与创意",
+                        "effect": { "attributes": { "wisdom": 15 }, "house": "拉文克劳", "tags_add": ["鹰院学子"] }
+                    }
+                ]
+            }
+        }
+    ]
+},
+  {
+    "id": "prologue_3",
+    "phase": "prologue",
+    "order": 3,
+    "title": "~ 序章 · 新家 ~",
+    "description": "你跟着级长穿过蜿蜒的走廊，终于来到了属于你的公共休息室。温暖的炉火噼啪作响，柔软的扶手椅散落在各处。\n\n级长微笑着指向楼梯：\n“宿舍在楼上，你的行李已经送到了。”\n\n你躺在床上，望着天花板。这就是你未来七年的家。明天，一切将正式开始。",
+    "choices": []
+  },
+  {
+    "id": "holiday_christmas_1",
+    "phase": "holiday",
+    "holiday": "christmas",
+    "title": "🎄 圣诞假期",
+    "description": "城堡被装饰得美轮美奂，十二棵圣诞树耸立在大厅里。你享受着丰盛的圣诞大餐，和朋友们交换了礼物。",
+    "choices": []
+},
+{
+    "id": "holiday_christmas_end",
+    "phase": "holiday",
+    "holiday": "christmas_end",
+    "title": "🎄 圣诞假期结束",
+    "description": "圣诞假期结束了，你回到了霍格沃茨。",
+    "choices": []
+},
+{
+    "id": "exam_1",
+    "phase": "exam",
+    "title": "📝 期末考试",
+    "description": "麦格教授在讲台上发下试卷。你深吸一口气，开始答题。",
+    "choices": [
+        { "text": "全力以赴", "effect": { "attributes": { "wisdom": 2 } } },
+        { "text": "偷偷瞄一眼邻桌", "effect": { "attributes": { "cunning": 2 } } }
+    ]
+},
+{
+    "id": "holiday_easter_1",
+    "phase": "holiday",
+    "holiday": "easter",
+    "title": "🐣 复活节假期",
+    "description": "春天降临霍格沃茨，黑湖边开满了野花。你走在阳光下，看到一群低年级学生在寻找复活节彩蛋。\n\n韦斯莱双子从你身边跑过，其中一个往你手里塞了一颗滋滋蜜蜂糖。",
+    "choices": [
+        { "text": "加入寻找彩蛋的行列", "effect": { "attributes": { "charm": 3 } } },
+        { "text": "坐在湖边享受难得的清闲", "effect": { "attributes": { "wisdom": 2 } } },
+        { "text": "去找海格喝茶", "effect": { "attributes": { "courage": 2 } } }
+    ]
+},
+{
+    "id": "holiday_easter_2",
+    "phase": "holiday",
+    "holiday": "easter_end",
+    "title": "假期结束",
+    "description": "复活节假期结束了。你回到公共休息室，发现桌上堆满了假期作业。\n\n赫敏已经完成了全部作业，还额外写了三英尺的论文。她正用期待的眼神看着你。",
+    "choices": [
+        { "text": "借赫敏的笔记参考一下", "effect": { "attributes": { "wisdom": 3 } } },
+        { "text": "自己熬夜补作业", "effect": { "attributes": { "courage": 3 } } }
+    ]
+},
+{
+    "id": "holiday_summer_1",
+    "phase": "holiday",
+    "holiday": "summer_start",
+    "title": "☀️ 暑假开始了",
+    "description": "年终宴会结束后，你登上了霍格沃茨特快列车。城堡在身后渐渐变小，窗外的风景从苏格兰高地变成了英格兰的田野。\n\n你翻看着今年的成绩单，心里盘算着下学期的计划。",
+    "choices": [
+        { "text": "回顾这一年的收获", "effect": { "attributes": { "wisdom": 2 } } },
+        { "text": "和朋友们畅聊暑假计划", "effect": { "attributes": { "charm": 2 } } }
+    ]
+},
+{
+    "id": "holiday_summer_2",
+    "phase": "holiday",
+    "holiday": "summer_end",
+    "title": "📚 新学期即将开始",
+    "description": "暑假接近尾声。你收到了霍格沃茨的来信，信封里装着新学年的书单和一封级长的提醒信。\n\n在对角巷采购完新学期用品后，你又一次站在了九又四分之三站台上。",
+    "choices": []
+},
+{
+    "id": "potions_class_other",
+    "phase": "main_story",
+    "location": "dungeon",
+    "trigger_condition": {
+        "player_house_not": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 2 }
+    },
+    "priority": 100,
+    "title": "第一节魔药课",
+    "description": "地下教室阴冷昏暗，沿墙的架子上摆满了浸泡着动物标本的玻璃罐。斯内普走进教室，黑袍在身后翻滚，像一只巨大的蝙蝠。\n\n他开始点名。念到哈利的名字时，停顿了一下。\n\n“啊，是的。哈利·波特。我们新来的——名人。”\n\n马尔福、克拉布和高尔用手捂着嘴偷笑。斯内普合上名册，漆黑的眼睛扫过全班。\n\n“你们到这里来，是要学习魔药制作的精密科学与严格工艺。我可以教你们如何提高声望，酿造荣耀，甚至阻止死亡——前提是，你们不是那种只会挥魔杖的蠢货。”\n\n他突然转向哈利。“波特！如果把水仙根粉末加入苦艾汁，会发生什么？”\n\n哈利摇了摇头。赫敏的手高高举起，几乎要从座位上站起来。\n\n“再试一次，波特。如果我要找一块牛黄，你会去哪里找？”哈利还是不知道。赫敏的手举得更高了。斯内普完全无视了她。\n\n然后，他的目光突然锁定了你。\n\n“你来回答。舟形乌头和狼毒乌头有什么区别？”",
+    "choices": [
+        {
+            "text": "正确回答：“它们是同一种植物，教授。只是名字不同。”",
+            "condition": { "attribute": { "wisdom": { "min": 40 } } },
+            "effect": {
+                "tags_add": ["好学生"],
+                "relationships": {
+                    "hermione_granger": 10
+                }
+            },
+            "follow_up": {
+                "description": "斯内普停顿了一秒，微微挑起眉毛。\n\n“看来并非所有人都像波特一样毫无准备。”\n\n他转身走回讲台，黑袍划出一道弧线。你注意到赫敏转过头来看你，眼睛亮了一下。\n\n下课后，赫敏抱着课本追上你。\n\n“你也提前看了《千种神奇药草及蕈类》对不对？几乎没人会预习魔药课——我是说，除了我。”她露出一个终于找到同类的笑容。",
+                "effect": {
+                    "relationships": {
+                        "hermione_granger": 5
+                    }
+                }
+            }
+        },
+        {
+            "text": "说不知道：“我不知道，教授。”",
+            "effect": {
+                "relationships": {
+                    "harry_potter": 10
+                }
+            },
+            "follow_up": {
+                "description": "斯内普的嘴唇扭曲了一下。\n\n“显然，无知是会传染的。”\n\n几个斯莱特林学生发出嗤笑。哈利转头看了你一眼，那眼神不是怜悯——是同病相怜。\n\n下课后，走廊里，哈利追上了你。\n\n“嘿，”他抓了抓本来就够乱的头发，“刚才——我是想说，你没跟着笑。谢了。”他看起来不太习惯表达感谢，但很真诚。",
+                "effect": {
+                    "relationships": {
+                        "harry_potter": 5
+                    }
+                }
+            }
+        },
+        {
+            "text": "指向赫敏：“教授，也许格兰杰小姐知道答案？”",
+            "condition": { "attribute": { "charm": { "min": 35 } } },
+            "effect": {
+                "relationships": {
+                    "hermione_granger": 10
+                }
+            },
+            "follow_up": {
+                "description": "你微微侧头，看向那个手几乎要戳到天花板的女巫。\n\n赫敏几乎在话音落下的瞬间就脱口而出：“它们是完全相同的植物，俗称 monkshood 或 wolfsbane！”\n\n斯内普漆黑的眼睛在你和赫敏之间扫了一遍。“我没有允许旁听者代答。”但他的嘴角抽动了一下，忍住了更难听的话。\n\n下课后，赫敏在教室门口等你。\n\n“你刚才完全可以自己回答的，我知道你读了书。不过……”她抿了抿嘴唇，“谢谢你没有让我一直举着手。”",
+                "effect": {
+                    "relationships": {
+                        "hermione_granger": 5
+                    }
+                }
+            }
+        },
+        {
+            "text": "保持沉默，低头避开视线",
+            "effect": {},
+            "follow_up": {
+                "description": "你低下头，盯着坩埚。沉默在教室里蔓延。\n\n斯内普从鼻腔里发出一声轻哼。“哼。”他转身继续对着哈利开火，把你从火力范围中放过了。\n\n下课后，你夹在人群中走出教室。没有人等你，也没有人追上来。这堂课就这么过去了。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "potions_class_slytherin",
+    "phase": "main_story",
+    "location": "dungeon",
+    "trigger_condition": {
+        "player_house": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 2 }
+    },
+    "priority": 100,
+    "title": "第一节魔药课",
+    "description": "地下教室阴冷昏暗。斯内普走进教室，开始点名。\n\n念到你的名字时，他的声音没有任何变化——但那双漆黑的眼睛在你身上停留了一瞬，几乎不可察觉地点了点头。你是斯莱特林。自己人。\n\n念到哈利的名字时，他的语气变了。“啊，是的。哈利·波特。我们新来的——名人。”\n\n他开始那套关于魔药艺术的独白，然后突然转向哈利开火。“波特！水仙根粉末和苦艾汁，会发生什么？”哈利茫然地摇头。赫敏的手伸得笔直，像一根快要发射的火箭。斯内普完全无视了她。\n\n德拉科·马尔福在你旁边用刚好能让你听到的声音低语：“看看他。连最基本的都不知道。”他翘起椅子，凑近你，苍白的脸上挂着狡黠的笑。“我父亲说过，救世主的名号大概是邓布利多编出来哄人的。你说是吧？”",
+    "choices": [
+        {
+            "text": "附和德拉科：“确实。一个连魔药常识都没有的救世主。”",
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": 15
+                }
+            },
+            "follow_up": {
+                "description": "德拉科满意地坐回椅子，笑容扩大了。前排的潘西·帕金森回头看了你们一眼，挑了挑眉毛。\n\n斯内普恰好转过身来。他显然听到了——但他什么也没说。那双漆黑的眼睛里闪过一丝近似赞许的神色。\n\n下课后，德拉科在门口等你，克拉布和高尔像两堵墙一样站在他身后。“有眼光。”他拍了拍你的肩膀，“午餐坐我们这边。斯莱特林应该团结。”",
+                "effect": {
+                    "relationships": {
+                        "draco_malfoy": 5
+                    }
+                }
+            }
+        },
+        {
+            "text": "保持沉默，不接德拉科的话",
+            "effect": {},
+            "follow_up": {
+                "description": "你没有接话。德拉科撇了撇嘴，转向了克拉布。\n\n斯内普处理完哈利的问题，突然转向你。但他问的问题简单多了——“告诉我，制作生骨灵需要什么原料？”",
+                "sub_choices": [
+                    {
+                        "text": "正确回答（智慧≥30）",
+                        "condition": { "attribute": { "wisdom": { "min": 30 } } },
+                        "description": "你流利地说出了答案。斯内普微微点头。“至少有人看过课本。”",
+                        "effect": {
+                            "tags_add": ["好学生"]
+                        },
+                        "follow_up": {
+                            "description": "下课后，你默默收拾东西离开教室。几个同院学生对你投来认可的目光。",
+                            "effect": {}
+                        }
+                    },
+                    {
+                        "text": "答不上来",
+                        "description": "你张了张嘴，但大脑一片空白。斯内普沉默了一瞬，没有追究。“开学第一周。我不指望所有人都准备好了。”他对你比对其他学院的学生宽容得多——但你错过了表现自己的机会。",
+                        "effect": {},
+                        "follow_up": {
+                            "description": "下课后，你默默离开教室。这堂课就这么过去了。",
+                            "effect": {}
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "text": "替哈利说话：“马尔福，他是在麻瓜家庭长大的。任何一个在巫师家庭长大的人都应该比他多知道一点。”",
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": -10,
+                    "harry_potter": 15
+                }
+            },
+            "follow_up": {
+                "description": "你放下手里的羽毛笔，声音平静但清晰。\n\n教室里安静了一瞬。德拉科的笑容僵在脸上，难以置信地瞪着你。潘西回头，像看叛徒一样看了你一眼。斯内普缓缓转身，漆黑的眼睛里是不可读的神情。哈利转过头，隔着几排座位看向你。那表情像是第一次真正注意到你的存在。\n\n下课后，你走出教室时，发现哈利靠在走廊的墙上，显然在等你。\n\n“你是斯莱特林的。”他说，语气里满是困惑，“你为什么要帮我？”他看起来不习惯有斯莱特林为他说话。这让他很困惑——但也很感激。",
+                "effect": {
+                    "relationships": {
+                        "harry_potter": 5
+                    }
+                }
+            }
+        }
+    ]
+},
+{
+    "id": "flying_lesson_other",
+    "phase": "main_story",
+    "location": "quidditch_pitch",
+    "trigger_condition": {
+        "player_house_not": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 3 }
+    },
+    "priority": 100,
+    "title": "第一节飞行课",
+    "description": "晴朗的下午，飞行课。二十把旧扫帚整齐排列在地上。霍琦夫人吹响银哨。\n\n哈利的扫帚立刻跳到他手里。赫敏的只是滚了一下。罗恩的扫帚打到了他自己的脸。\n\n纳威太紧张，还没等哨响就冲了出去，摔断了手腕。霍琦夫人带他离开。“在我回来之前，任何人不得擅自飞行！”\n\n德拉科捡起纳威的记忆球，跨上扫帚升到空中。“想要的话就来拿啊——还是说你们都和他一样胆小鬼？”\n\n哈利抓起了扫帚。赫敏立刻拉住他的袖子。“哈利，不行！你会被开除的！”罗恩在旁边犹豫了一下，咬了咬牙。“管他呢，哈利，给他点颜色看看！”\n\n你也在场——",
+    "choices": [
+        {
+            "text": "替纳威出头，和哈利一起升空",
+            "condition": { "attribute": { "courage": { "min": 30 } } },
+            "effect": {
+                "tags_add": ["飞行天赋"],
+                "relationships": {
+                    "harry_potter": 20,
+                    "ron_weasley": 15,
+                    "hermione_granger": 5,
+                    "draco_malfoy": -10
+                }
+            },
+            "follow_up": {
+                "description": "你抓住扫帚。“放下它，马尔福。”\n\n赫敏倒吸一口凉气：“你也是？你们都会被开除的！”罗恩眼睛亮了：“酷！两个人！”\n\n你和哈利同时升空，从两侧包抄德拉科。德拉科被迫扔出记忆球，哈利俯冲接住。\n\n全场欢呼。罗恩跳起来大喊。赫敏捂着脸，但指缝里露出一点笑意。\n\n下课后，麦格教授出现了。她带走了哈利，但走之前看了你一眼。赫敏叹了口气：“你们真是……但干得漂亮。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "留在地面，但出声支持哈利",
+            "effect": {
+                "relationships": {
+                    "harry_potter": 5,
+                    "ron_weasley": 10,
+                    "hermione_granger": 10,
+                    "draco_malfoy": -5
+                }
+            },
+            "follow_up": {
+                "description": "“马尔福，欺负一个不在场的人算什么本事？”\n\n罗恩在旁边用力点头：“就是！”赫敏低声说：“至少有人用讲道理的方式。”\n\n哈利趁德拉科分心升空，最终接住了记忆球。\n\n下课后，赫敏走过来：“选择讲道理而不是违反校规，很明智。”罗恩凑过来：“明智是明智，但你看到他飞的样子了吗？”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "保持观望，不做任何事",
+            "effect": {},
+            "follow_up": {
+                "description": "你站在人群中，看着一切发生。哈利接住记忆球时，你和所有人一起鼓掌。\n\n下课后，大家兴奋地议论着哈利的壮举。你只是一个旁观者。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "附和德拉科嘲笑纳威",
+            "condition": { "player_house": "格兰芬多" },
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": 5,
+                    "harry_potter": -10,
+                    "ron_weasley": -15,
+                    "hermione_granger": -10
+                }
+            },
+            "follow_up": {
+                "description": "你笑着附和德拉科。周围几个格兰芬多同学难以置信地看着你。西莫·斐尼甘皱起眉头：“你到底是哪边的？”罗恩瞪着你的目光比任何人都愤怒。赫敏冷冷地看向你。\n\n下课后，公共休息室里气氛有点冷。罗恩经过你时故意移开了视线。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "附和德拉科嘲笑纳威",
+            "condition": { "player_house_not": "格兰芬多" },
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": 5,
+                    "hermione_granger": -5
+                }
+            },
+            "follow_up": {
+                "description": "你跟着笑了两声。周围几个人看了看你，但没什么特别强烈的反应——你不是格兰芬多。赫敏转过头来，目光锐利。“没什么好笑的。”\n\n下课后，没有明显的社交后果。但赫敏记住了你的态度。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "flying_lesson_slytherin",
+    "phase": "main_story",
+    "location": "quidditch_pitch",
+    "trigger_condition": {
+        "player_house": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 3 }
+    },
+    "priority": 100,
+    "title": "第一节飞行课",
+    "description": "晴朗的下午，飞行课。斯莱特林和格兰芬多一起上。你的扫帚很听话，几乎立刻就跳到了你手里。\n\n纳威摔断了手腕。霍琦夫人带他离开。\n\n德拉科捡起记忆球，跨上扫帚升到空中。“想要的话就来拿啊——还是说格兰芬多都是胆小鬼？”\n\n那边，赫敏在拉哈利的袖子，声音急切。罗恩涨红了脸冲德拉科喊：“闭嘴，马尔福！”\n\n德拉科在空中朝你的方向看了一眼——",
+    "choices": [
+        {
+            "text": "支持德拉科，对哈利喝倒彩",
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": 15,
+                    "ron_weasley": -10
+                }
+            },
+            "follow_up": {
+                "description": "你仰头对德拉科喊：“马尔福，别让波特碰你的东西！”斯莱特林的学生们发出哄笑。罗恩朝你们的方向怒目而视。\n\n哈利升空，飞得比德拉科更好，最终接住了记忆球。德拉科落地后朝你点了点头。\n\n下课后，德拉科在公共休息室里特意提到了你。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "保持沉默，旁观",
+            "effect": {},
+            "follow_up": {
+                "description": "你一言不发。西奥多·诺特若有所思地看了你一眼。\n\n下课后，什么事也没发生。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "为格兰芬多说话",
+            "effect": {
+                "relationships": {
+                    "draco_malfoy": -5,
+                    "harry_potter": 10,
+                    "ron_weasley": 5
+                }
+            },
+            "follow_up": {
+                "description": "你眉头微皱，对潘西说：“这有什么好得意的？一个记忆球而已。”潘西的笑容凝固了。罗恩隔着训练场看到了，表情从愤怒变成了困惑。\n\n哈利接住了记忆球。你没有跟着喝倒彩。\n\n下课后，潘西此后对你有些冷淡。但有少数几个斯莱特林私下向你投来不那么敌意的目光。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "自己升空，以飞行实力说话",
+            "condition": { "attribute": { "courage": { "min": 30 } } },
+            "effect": {
+                "tags_add": ["飞行天赋"],
+                "relationships": {
+                    "draco_malfoy": 5,
+                    "harry_potter": 5,
+                    "ron_weasley": 5
+                }
+            },
+            "follow_up": {
+                "description": "你没说话，直接跨上扫帚，用力一蹬。地面在你的脚下骤然缩小。\n\n“又来一个！”罗恩在下面喊道。赫敏捂住眼睛：“梅林啊，还有完没完——”\n\n德拉科转过头，惊讶地发现升空的是你。你在空中和德拉科、哈利形成三角对峙。你的飞行姿势干净利落，毫不逊色。\n\n下课后，麦格教授出现了，表情严肃。德拉科在公共休息室等你。“我不知道你会飞。”",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "midnight_duel_gryffindor",
+    "phase": "main_story",
+    "location": "corridor",
+    "trigger_condition": {
+        "player_house": "格兰芬多",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 4 },
+        "or_conditions": [
+            { "npc_affection": { "harry_potter": { "min": 10 } } },
+            { "npc_affection": { "ron_weasley": { "min": 10 } } }
+        ]
+    },
+    "priority": 100,
+    "title": "午夜决斗",
+    "description": "傍晚，大厅里烛火摇曳。马尔福走到格兰芬多长桌旁，把一张羊皮纸扔在哈利面前。\n\n“今晚，奖品陈列室。巫师决斗。如果你敢的话，波特。”\n\n罗恩立刻站了起来，耳朵尖都红了。“他当然敢！”赫敏放下叉子，眉头紧锁。“哈利，这明显是个陷阱——”\n\n但马尔福已经走远了。\n\n罗恩转过头，在长桌旁找到了你，压低声音，眼里闪着兴奋的光：“你都听到了？今晚我们一起去。不能让马尔福觉得格兰芬多好欺负。”\n\n哈利看了你一眼，轻轻点了点头。",
+    "choices": [
+        {
+            "text": "加入哈利和罗恩",
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 20,
+                    "ron_weasley": 20,
+                    "hermione_granger": 15
+                }
+            },
+            "follow_up": {
+                "description": "深夜，公共休息室的炉火已经熄灭。你和哈利、罗恩在黑暗中碰头。\n\n赫敏穿着睡衣出现了，抱着胳膊。“我就知道你们会来。”她叹了口气。“至少让我跟着，免得你们被开除。”\n\n走廊像一条漆黑的喉咙。你们贴着石墙走，每一次盔甲被风吹动的咔嗒声都让人心跳骤停。\n\n奖品陈列室空无一人。没有马尔福。“那个骗子！”罗恩的脸红到了耳根。\n\n费尔奇突然从拐角冒出来。“谁在那儿？”\n\n你们撒腿就跑，一头扎进三楼的走廊。在一扇锁着的门前，赫敏气喘吁吁地停住。“让开——”她用魔杖一点，门锁咔嗒一声弹开了。\n\n你们挤进去，然后所有人都僵住了。\n\n一只巨犬。三个脑袋。六只黄色的眼睛在黑暗中像六盏灯笼，同时盯住了你们。口水滴在石板上，每一滴都嘶嘶冒着青烟。它脚下，一扇活板门半掩着。\n\n你们跌出门外，一路狂奔回格兰芬多塔楼。所有人瘫倒在地，大口喘着气。\n\n哈利的脸色比月光还白：“它在看守什么东西——”\n\n赫敏撑着膝盖，还在平复呼吸：“你们——差点——害死我们。”然后她直起身，眼中闪过一道光。“但那扇活板门下面一定藏着什么。是邓布利多要保护的东西。”\n\n罗恩还在发抖，但嘴角却忍不住上扬。“至少……马尔福没看到我们被吓到的样子。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "犹豫后决定不去",
+            "effect": {
+                "relationships": { "ron_weasley": 5 }
+            },
+            "follow_up": {
+                "description": "你犹豫了一下，最终摇了摇头。“我不去了。但你们小心——马尔福肯定有诈。”\n\n罗恩有点失望，但拍了拍你的肩膀。“好吧。明天告诉你发生了什么。”\n\n第二天早上，罗恩挤到你旁边，手舞足蹈地开始讲。“——一只三头犬！在三楼禁区！它在看守一扇活板门——”\n\n赫敏用手肘狠狠捅了他一下。“小声点！”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "保持沉默，不表态",
+            "effect": {},
+            "follow_up": {
+                "description": "你低下头，装作没听到。罗恩等了一会儿，耸耸肩，转向了哈利。\n\n深夜，你听到他们窸窣离开的声音。你翻了个身，继续睡。\n\n第二天早餐时，大家都在议论昨晚的事。你只是个旁观者。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "midnight_duel_other",
+    "phase": "main_story",
+    "location": "corridor",
+    "trigger_condition": {
+        "player_house_not": ["斯莱特林", "格兰芬多"],
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 4 },
+        "or_conditions": [
+            { "npc_affection": { "harry_potter": { "min": 10 } } },
+            { "npc_affection": { "ron_weasley": { "min": 10 } } }
+        ]
+    },
+    "priority": 100,
+    "title": "午夜决斗",
+    "description": "傍晚，你在大厅吃饭。格兰芬多长桌那边传来骚动——马尔福扔下一张纸条走了。罗恩涨红了脸，赫敏在摇头。\n\n晚餐后，你在走廊里碰到了罗恩。他认出了你——之前你们有过交集。“嘿，”他左右看看，压低声音，“马尔福约哈利今晚决斗。肯定是陷阱，但我们不能让他觉得格兰芬多好欺负。”\n\n他犹豫了一下。“你……想一起来吗？多一个人多一份胆。”",
+    "choices": [
+        {
+            "text": "答应加入",
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 15,
+                    "ron_weasley": 15,
+                    "hermione_granger": 5
+                }
+            },
+            "follow_up": {
+                "description": "你点了点头。“好，我去。”罗恩咧嘴一笑。“好！午夜见。”\n\n午夜，你悄悄离开宿舍。哈利、罗恩和赫敏已经在那里了。赫敏看到你，叹了口气。“又多了一个。好极了。”但她的语气里没有真正的敌意。\n\n你们一起穿过漆黑的走廊。费尔奇出现了，你们疯狂逃窜，最后躲进三楼一扇锁着的门后。\n\n门后是一只三头巨犬。三个脑袋，六只眼睛。口水冒着青烟。脚下是一扇活板门。\n\n你们跌出门外。分开之前，罗恩拍了拍你的肩膀。“你胆子不小。下次还有这种……呃，我是说，下次别告诉赫敏。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "答应，但没有赴约",
+            "effect": {
+                "relationships": { "ron_weasley": -5 }
+            },
+            "follow_up": {
+                "description": "你点了点头，但午夜时没有离开宿舍。\n\n第二天，罗恩看到你时欲言又止。“你昨晚……算了，没事。”他的眼神里有一丝失望。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "婉拒",
+            "effect": {},
+            "follow_up": {
+                "description": "“抱歉，这不是我的事。”罗恩点点头。“理解。没事。”\n\n第二天，你听说他们昨晚的冒险。你只是个旁观者。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "婉拒，但提醒他们小心",
+            "effect": {
+                "relationships": {
+                    "ron_weasley": 10,
+                    "harry_potter": 5
+                }
+            },
+            "follow_up": {
+                "description": "“我不去了。但你们小心点——马尔福不会无缘无故约决斗。费尔奇可能已经在那边等着了。”\n\n罗恩愣了一下，然后认真地点点头。“……你说得对。我会告诉哈利的。”\n\n他们当晚去了，但更加谨慎。绕过了费尔奇，但还是误入了禁区，发现了三头犬。\n\n第二天，罗恩特意来找你。“谢了。你那个提醒帮了大忙。”",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "midnight_duel_slytherin_a",
+    "phase": "main_story",
+    "location": "corridor",
+    "trigger_condition": {
+        "player_house": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 4 },
+        "npc_affection": { "draco_malfoy": { "min": 15 } }
+    },
+    "priority": 100,
+    "title": "午夜决斗",
+    "description": "晚餐后，德拉科在斯莱特林公共休息室找到你。银灰色的眼睛里闪着狡黠的光。\n\n“今晚有好戏看。我给波特发了决斗挑战——奖品陈列室，午夜。”他咧嘴一笑。“当然，我不会去的。费尔奇会在那里等着他。”\n\n“你想来吗？会很精彩。”",
+    "choices": [
+        {
+            "text": "加入德拉科，藏在暗处看戏",
+            "effect": {
+                "relationships": { "draco_malfoy": 15 }
+            },
+            "follow_up": {
+                "description": "你和德拉科藏在走廊拐角的阴影里。午夜的城堡寂静得让人起鸡皮疙瘩。\n\n走廊里出现了动静——不止一个人。波特、韦斯莱和格兰杰。\n\n“波特带了帮手。”你低声说。德拉科冷笑。“意料之中。”\n\n费尔奇出现了。但波特反应极快，他们转身就跑，消失在楼梯上方。\n\n德拉科有点失望，但很快恢复了得意。“没抓到。但至少把他们吓得够呛。”他拍了拍你的肩膀。“你看到了吗？韦斯莱差点撞到墙上。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "口头答应，但没有赴约",
+            "effect": {
+                "relationships": { "draco_malfoy": 5 }
+            },
+            "follow_up": {
+                "description": "你点了点头，但午夜时没有离开宿舍。\n\n第二天，德拉科在公共休息室里对着一群人吹嘘昨晚的事。他看到你，挑了挑眉毛。“你错过了。不过没关系。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "拒绝德拉科，保持沉默",
+            "effect": {},
+            "follow_up": {
+                "description": "“我没兴趣，马尔福。”德拉科耸耸肩，没有强求。“随便你。”\n\n第二天，你听到传言——波特他们昨晚去了三楼禁区。但你不清楚具体发生了什么。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "自己悄悄去夜游",
+            "condition": { "attribute": { "cunning": { "min": 35 } } },
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 5,
+                    "hermione_granger": 5
+                }
+            },
+            "follow_up": {
+                "description": "你拒绝了德拉科，但决定亲自去看看。\n\n午夜，你独自离开公共休息室。走廊像一条漆黑的喉咙。你贴着墙壁，脚步轻得像猫。\n\n你在奖品陈列室附近找到了一个好位置——一副盔甲后面的阴影里。\n\n然后你看到了他们。波特、韦斯莱、格兰杰。他们披着一件隐形的东西，脚踝在月光下若隐若现。\n\n费尔奇从拐角冒了出来。波特他们转身就跑——朝着你的方向。你来不及躲开。\n\n哈利差点撞到你。月光下，他认出了你的脸——斯莱特林长袍。“你——”\n\n费尔奇的脚步声越来越近。“这边！”赫敏压低声音，拉着所有人往楼梯方向跑。\n\n你跟上了他们——因为费尔奇不会在乎你是哪个学院的。\n\n你们挤进三楼那扇锁着的门。然后你看到了它。三头巨犬。六只黄色的眼睛。口水冒着青烟。活板门半掩着。\n\n你们跌出门外。所有人都在喘气。\n\n罗恩第一个开口：“你——你是斯莱特林的。”他的语气不是质问，而是困惑。“你为什么一个人在这里？”\n\n赫敏靠着墙，眼睛一直盯着你。哈利什么都没说。他只是看着你。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "警告哈利",
+            "condition": { "attribute": { "courage": { "min": 35 } } },
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 20,
+                    "hermione_granger": 15
+                }
+            },
+            "follow_up": {
+                "description": "你不喜欢德拉科的做法。你在走廊里找到了哈利。\n\n“马尔福不会去的。费尔奇在奖品陈列室等着你们。”\n\n罗恩眯起眼睛。“我们凭什么相信一个斯莱特林？”\n\n赫敏审视着你。“……你为什么要告诉我们这个？”\n\n你沉默了一瞬。“因为这不公平。”\n\n哈利和赫敏交换了一个眼神。最终，哈利点了点头。“……谢了。”\n\n他们让你一起走。你们换了路线，但还是误入了禁区，看到了三头巨犬。\n\n分开之前，哈利回头看了你一眼。“你是斯莱特林的。”他说。“但你不一样。”",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "midnight_duel_slytherin_b",
+    "phase": "main_story",
+    "location": "corridor",
+    "trigger_condition": {
+        "player_house": "斯莱特林",
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "exact": 4 },
+        "npc_affection": { "draco_malfoy": { "max": 14 } },
+        "attribute": { "charm": { "min": 30 } }
+    },
+    "priority": 100,
+    "title": "午夜决斗",
+    "description": "你没有和德拉科走得很近。但他身边的人不太会保密。\n\n晚餐后，你经过公共休息室的角落。克拉布和高尔正坐在壁炉旁，用他们以为很低的声音交谈着。\n\n“……马尔福说今晚有好戏。波特会被费尔奇抓住。”\n“我们不去吗？”\n“马尔福让我们别掺和。他在奖品陈列室那边设了个陷阱。”\n\n你放慢脚步，不动声色地听完了全部。克拉布抬头看了你一眼，很快移开了目光——他没有怀疑你在偷听。毕竟，谁会怀疑一个斯莱特林呢？\n\n现在你知道了。德拉科约了波特午夜决斗，但他不会赴约。费尔奇会在那里等着。",
+    "choices": [
+        {
+            "text": "当作没听到，回宿舍睡觉",
+            "effect": {},
+            "follow_up": {
+                "description": "这是波特的事，和你无关。你回到宿舍，不再去想。\n\n第二天，你听说波特他们还是逃掉了。德拉科在公共休息室里脸色不太好。\n\n你只是个旁观者。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "悄悄告诉德拉科",
+            "effect": {
+                "relationships": { "draco_malfoy": 10 }
+            },
+            "follow_up": {
+                "description": "你找到德拉科，低声告诉他。“你的计划——克拉布和高尔在大声讨论。”\n\n德拉科脸色变了。“那两个白痴——”他看了你一眼，眼神里有一丝意外。“……谢了。至少有人有脑子。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "自己悄悄去夜游",
+            "condition": { "attribute": { "cunning": { "min": 35 } } },
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 5,
+                    "hermione_granger": 5
+                }
+            },
+            "follow_up": {
+                "description": "你决定亲自去看看。\n\n午夜，你独自离开公共休息室。走廊像一条漆黑的喉咙。你贴着墙壁，脚步轻得像猫。\n\n你在奖品陈列室附近找到了一个好位置——一副盔甲后面的阴影里。\n\n然后你看到了他们。波特、韦斯莱、格兰杰。他们披着一件隐形的东西，脚踝在月光下若隐若现。\n\n费尔奇从拐角冒了出来。波特他们转身就跑——朝着你的方向。你来不及躲开。\n\n哈利差点撞到你。月光下，他认出了你的脸——斯莱特林长袍。“你——”\n\n费尔奇的脚步声越来越近。“这边！”赫敏压低声音，拉着所有人往楼梯方向跑。\n\n你跟上了他们——因为费尔奇不会在乎你是哪个学院的。\n\n你们挤进三楼那扇锁着的门。然后你看到了它。三头巨犬。六只黄色的眼睛。口水冒着青烟。活板门半掩着。\n\n你们跌出门外。所有人都在喘气。\n\n罗恩第一个开口：“你——你是斯莱特林的。”他的语气不是质问，而是困惑。“你为什么一个人在这里？”\n\n赫敏靠着墙，眼睛一直盯着你。哈利什么都没说。他只是看着你。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "警告哈利",
+            "condition": { "attribute": { "courage": { "min": 35 } } },
+            "effect": {
+                "tags_add": ["夜游经历"],
+                "relationships": {
+                    "harry_potter": 15,
+                    "hermione_granger": 10
+                }
+            },
+            "follow_up": {
+                "description": "你不喜欢这种做法。你在走廊里找到了哈利。\n\n“马尔福不会去的。费尔奇在奖品陈列室等着你们。”\n\n罗恩眯起眼睛。“我们凭什么相信一个斯莱特林？”\n\n赫敏审视着你。“……你为什么要告诉我们这个？”\n\n你沉默了一瞬。“因为这不公平。”\n\n哈利和赫敏交换了一个眼神。最终，哈利点了点头。“……谢了。”\n\n他们让你一起走。你们换了路线，但还是误入了禁区，看到了三头巨犬。\n\n分开之前，哈利回头看了你一眼。那眼神里没有了防备——只有困惑，和一丝感激。",
+                "effect": {}
+            }
+        }
+    ]
+}
+
+
+  
+  
+]
+
