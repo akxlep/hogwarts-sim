@@ -150,7 +150,7 @@ function showStage(stageName) {
         UI.bottomBar.style.display = 'none';
         UI.timeDisplay.textContent = '~ 序章 ~';
     } else {
-        UI.bottomBar.style.display = 'block';
+        UI.bottomBar.style.display = 'flex';
         updatePlayerUI();
         updateTimeDisplay();
     }
@@ -345,6 +345,7 @@ function confirmPlan() {
     
     // 重置本周的事件标记
     GameState.hadDailyEvent = false;
+    GameState.hasTriggeredEvent = false;
     
     // 第一步：展示所有行动的总结
     showStage('summary');
@@ -412,6 +413,7 @@ function confirmPlan() {
 function triggerNextDailyEvent() {
     const event = GameState.pendingDailyEvents.shift();
     GameState.hadDailyEvent = true; // 标记本周已触发过 daily 事件
+    GameState.hasTriggeredEvent = true; // 标记本周已触发过事件
     showStage('event');
     renderEvent(event);
 }
@@ -428,12 +430,22 @@ function proceedToEvent() {
     const mainEvent = Events.find(e => {
         if (e.phase !== 'main_story') return false;
         if (GameState.player.completedEvents.includes(e.id)) return false;
+        // 互斥组检查：如果同组内已有事件被完成，跳过
+        if (e.exclusion_group) {
+            const groupCompleted = Events.some(other =>
+                other.exclusion_group === e.exclusion_group &&
+                other.id !== e.id &&
+                GameState.player.completedEvents.includes(other.id)
+            );
+            if (groupCompleted) return false;
+        }
         return checkTriggerCondition(e.trigger_condition);
     });
     
     if (mainEvent) {
         showStage('event');
         renderEvent(mainEvent);
+        GameState.hasTriggeredEvent = true; // 标记本周已触发过事件
         return;
     }
     
@@ -442,8 +454,9 @@ function proceedToEvent() {
     if (triggeredEvent) {
         showStage('event');
         renderEvent(triggeredEvent);
-    } else if (GameState.hadDailyEvent) {
-        // 已经触发过 daily 事件，直接进入下一周，不显示"平静的一周"
+        GameState.hasTriggeredEvent = true; // 标记本周已触发过事件
+    } else if (GameState.hasTriggeredEvent) {
+        // 已经触发过事件，直接进入下一周，不显示"平静的一周"
         startNextWeek();
     } else {
         // 无事发生，简短提示后进入下一周
@@ -467,6 +480,15 @@ function selectWeeklyEvent() {
         if (!e.location || !visitedLocations.includes(e.location)) return false;
         if (GameState.player.completedEvents.includes(e.id)) return false;
         if (!checkTriggerCondition(e.trigger_condition)) return false;
+        // 互斥组检查：如果同组内已有事件被完成，跳过
+        if (e.exclusion_group) {
+            const groupCompleted = Events.some(other =>
+                other.exclusion_group === e.exclusion_group &&
+                other.id !== e.id &&
+                GameState.player.completedEvents.includes(other.id)
+            );
+            if (groupCompleted) return false;
+        }
         return true;
     });
     
@@ -583,8 +605,18 @@ function checkTriggerCondition(condition) {
         if (p.house !== condition.player_house) return false;
     }
     if (condition.player_house_not) {
-        if (p.house === condition.player_house_not) return false;
+        // 支持字符串或数组格式
+        const forbiddenHouses = Array.isArray(condition.player_house_not) 
+            ? condition.player_house_not 
+            : [condition.player_house_not];
+        if (forbiddenHouses.includes(p.house)) return false;
     }
+
+    // 性别检查
+    if (condition.player_gender) {
+        if (p.gender !== condition.player_gender) return false;
+    }
+
     
     //学年检查
     if (condition.schoolYear) {
@@ -611,6 +643,13 @@ function checkTriggerCondition(condition) {
         }
         if (!anyMatch) return false;
     }
+
+
+    // 检查某事件是否已完成（用于多阶段事件的条件）
+    if (condition.event_completed) {
+        if (!p.completedEvents.includes(condition.event_completed)) return false;
+    }
+
 
     return true;
 }
@@ -763,7 +802,23 @@ function renderEvent(eventData) {
             .replace(/\{先生\/小姐\}/g, isMale ? '先生' : '小姐')
             .replace(/\{男孩\/女孩\}/g, isMale ? '男孩' : '女孩');
     };
+    // 处理 description 是数组的函数（支持嵌套）
+    function resolveDescription(desc) {
+        if (Array.isArray(desc)) {
+            const validVariants = desc.filter(v => {
+                return !v.condition || checkTriggerCondition(v.condition);
+            });
+            if (validVariants.length > 0) {
+                const chosen = validVariants[Math.floor(Math.random() * validVariants.length)];
+                return chosen.text;
+            }
+            return '';
+        }
+        return desc;
+    }
+    
     eventData = JSON.parse(JSON.stringify(eventData));
+    eventData.description = resolveDescription(eventData.description);
     if (eventData.title) eventData.title = genderReplace(eventData.title);
     if (eventData.description) eventData.description = genderReplace(eventData.description);
     if (eventData.choices) {
@@ -772,14 +827,14 @@ function renderEvent(eventData) {
             text: genderReplace(c.text),
             follow_up: c.follow_up ? {
                 ...c.follow_up,
-                description: genderReplace(c.follow_up.description),
+                description: genderReplace(resolveDescription(c.follow_up.description)),
                 sub_choices: c.follow_up.sub_choices ? c.follow_up.sub_choices.map(sc => ({
                     ...sc,
                     text: genderReplace(sc.text),
-                    description: genderReplace(sc.description),
+                    description: genderReplace(resolveDescription(sc.description)),
                     follow_up: sc.follow_up ? {
                         ...sc.follow_up,
-                        description: genderReplace(sc.follow_up.description)
+                        description: genderReplace(resolveDescription(sc.follow_up.description))
                     } : undefined
                 })) : undefined
             } : undefined
@@ -870,7 +925,7 @@ function handleEventInput(eventData, value) {
         GameState.player.name = value;
         updatePlayerUI();
         // 序章名字输入后，立刻显示底部栏
-        UI.bottomBar.style.display = 'block';
+        UI.bottomBar.style.display = 'flex';
         proceedPrologue();
     }
 }
@@ -922,6 +977,9 @@ function handleEventChoice(eventData, choice) {
         proceedToEvent();
     } else if (eventData.phase === 'prologue') {
         proceedPrologue();
+    } else if (eventData.phase === 'main_story') {
+        // 主故事事件结束后，重新检测是否有下一阶段事件
+        proceedToEvent();
     } else if (eventData._isHoliday || eventData.phase === 'exam' || eventData.phase === 'holiday' || eventData.phase === 'main_story') {
         advanceWeekSafely();
     } else {
@@ -944,6 +1002,8 @@ function showFollowUpDescription(followUp, parentEvent) {
             proceedToEvent();
         } else if (parentEvent.phase === 'prologue') {
             proceedPrologue();
+        } else if (parentEvent.phase === 'main_story') {
+            proceedToEvent();
         } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
             advanceWeekSafely();
         } else {
@@ -1000,6 +1060,8 @@ function renderSubChoices(parentEvent, followUp) {
                                 proceedToEvent();
                             } else if (parentEvent.phase === 'prologue') {
                                 proceedPrologue();
+                            } else if (parentEvent.phase === 'main_story') {
+                                proceedToEvent();
                             } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
                                 advanceWeekSafely();
                             } else {
@@ -1020,6 +1082,8 @@ function renderSubChoices(parentEvent, followUp) {
                             proceedToEvent();
                         } else if (parentEvent.phase === 'prologue') {
                             proceedPrologue();
+                        } else if (parentEvent.phase === 'main_story') {
+                            proceedToEvent();
                         } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
                             advanceWeekSafely();
                         } else {
@@ -1047,6 +1111,9 @@ function handleEventEnd(eventData) {
         proceedToEvent();
     } else if (eventData.phase === 'prologue') {
         proceedPrologue();
+    } else if (eventData.phase === 'main_story') {
+        // 主故事事件结束后，重新检测是否有下一阶段事件
+        proceedToEvent();
     } else if (eventData._isHoliday || eventData.phase === 'exam' || eventData.phase === 'holiday') {
         // 假期或考试事件结束后，安全推进时间
         advanceWeekSafely();
@@ -1143,7 +1210,7 @@ function proceedPrologue() {
 }
 
 function finishPrologue() {
-    UI.bottomBar.style.display = 'block';
+    UI.bottomBar.style.display = 'flex';
     GameState.player.schoolYear = 1;
     GameState.player.year = 1991;
     GameState.player.month = 9;

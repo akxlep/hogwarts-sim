@@ -357,10 +357,10 @@ body {
 /* ==================== 底部固定栏 ==================== */
 #bottom-bar {
     display: flex;
-    align-items: baseline;      /* 所有文字按基线对齐 */
+    align-items: center;
     justify-content: center;
     gap: 16px;
-    padding: 6px 16px;
+    padding: 12px 12px;
     background-color: #0f3460;
     border-top: 1px solid #4a3f35;
     border-radius: 0 0 6px 6px;
@@ -372,7 +372,7 @@ body {
     border: 1px solid #4a3f35;
     color: #c9b896;
     font-size: 18px;
-    line-height: 1;             /* 移除额外行高，让图标紧贴基线 */
+    line-height: 1;
     padding: 2px 6px;
     cursor: pointer;
     border-radius: 4px;
