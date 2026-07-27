@@ -31,6 +31,14 @@
                 </div>
             </section>
 
+
+            <!-- 阶段零：本周课程 -->
+            <section id="stage-lesson" class="stage" style="display:none;">
+                <h2>本周课程</h2>
+                <div id="lesson-list"></div>
+                <button id="btn-lesson-continue">继续</button>
+            </section>
+
             <!-- 阶段一：本周行动安排 -->
             <section id="stage-plan" class="stage" style="display:none;">
                 <h2>本周行动安排</h2>
@@ -92,6 +100,7 @@
     </div>
 
     <script src="game-engine.js"></script>
+    <script src="lesson-engine.js"></script>
     <!-- 好感度弹窗 -->
     <div id="relationships-modal" style="display:none;">
         <div id="relationships-content">

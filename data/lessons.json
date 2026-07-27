@@ -1,0 +1,212 @@
+[
+    {
+    "id": "lesson_potions_snape_question",
+    "phase": "lesson",
+    "subject": "魔药课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "min": 4 },
+        "event_not_completed": "lesson_potions_snape_question"
+    },
+    "text": "魔药课上，斯内普教授突然点了你的名字，问了一个关于月长石的问题。你答对了。斯内普盯着你看了一会儿，然后转身走开，黑袍在他身后翻滚。你旁边的同学悄悄松了口气——替你。"
+},
+{
+    "id": "lesson_potions_stir",
+    "phase": "lesson",
+    "subject": "魔药课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "min": 4 },
+        "event_not_completed": "lesson_potions_stir"
+    },
+    "text": "魔药课上，你搅拌坩埚时不小心多搅了半圈。药剂从淡蓝色变成了诡异的紫色，冒出一股硫磺味。斯内普路过你的桌子，瞥了一眼。\"至少没有爆炸，\"他说，\"比波特上次强。\""
+},
+{
+    "id": "lesson_potions_cauldron_smoke",
+    "phase": "lesson",
+    "subject": "魔药课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "min": 4 },
+        "event_not_completed": "lesson_potions_cauldron_smoke"
+    },
+    "text": "魔药课上，你的坩埚冒出一股绿色的烟。斯内普无声地出现在你身后。\"你把豪猪刺放早了，\"他说，声音很低，\"下次先数到三。\"他没有扣分。你觉得这已经是他能给出的最接近表扬的东西了。"
+},
+{
+    "id": "lesson_charms_levitation",
+    "phase": "lesson",
+    "subject": "魔咒课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_charms_levitation"
+    },
+    "text": "魔咒课上，弗立维教授让大家练习漂浮咒。你的羽毛摇摇晃晃地飘了起来，在半空中转了个圈。\"很好！\"弗立维尖声说，\"非常优雅的手势！拉文克劳加两分！\""
+},
+{
+    "id": "lesson_charms_lumos",
+    "phase": "lesson",
+    "subject": "魔咒课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_charms_lumos"
+    },
+    "text": "魔咒课上，弗立维教授教了荧光闪烁。你第一个成功点亮了魔杖尖端，柔和的光芒照亮了课本。旁边一个赫奇帕奇女生小声说：\"你做得真快。\"弗立维高兴得差点从他堆起来的书上掉下来。"
+},
+{
+    "id": "lesson_charms_cheering",
+    "phase": "lesson",
+    "subject": "魔咒课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_charms_cheering"
+    },
+    "text": "魔咒课上，弗立维教授教了快乐咒。你对着旁边的同学施了咒——他先是愣了一下，然后开始咯咯笑，笑得停不下来。弗立维不得不亲自解咒。\"效果很好！\"他尖声说，\"但下次请用在自愿者身上。\""
+},
+{
+    "id": "lesson_transfiguration_matchstick",
+    "phase": "lesson",
+    "subject": "变形术",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_transfiguration_matchstick"
+    },
+    "text": "变形课上，你盯着火柴看了整整十分钟。就在麦格教授走过你桌边的那一刻，火柴终于变成了一根银针——尖的那头还有点钝，但确实是针。麦格微微点了点头。\"继续练习。\""
+},
+{
+    "id": "lesson_transfiguration_button",
+    "phase": "lesson",
+    "subject": "变形术",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_transfiguration_button"
+    },
+    "text": "变形课上，麦格教授让大家把纽扣变成甲虫。你的纽扣长出了六条腿，开始在桌上爬——但它的背仍然是塑料的。\"介于两者之间，\"麦格说，\"但至少它在动。继续。\""
+},
+{
+    "id": "lesson_transfiguration_snail",
+    "phase": "lesson",
+    "subject": "变形术",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_transfiguration_snail"
+    },
+    "text": "变形课上，麦格教授让大家把茶杯变成蜗牛。你的茶杯长出了一个壳，但底部仍然是陶瓷的。\"接近了，\"麦格说，\"但我不建议用它喝茶。\"你旁边的泰瑞·布特正盯着自己那只一半是茶杯、一半在爬的东西，一脸困惑。"
+},
+{
+    "id": "lesson_herbology_mandrake",
+    "phase": "lesson",
+    "subject": "草药学",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_herbology_mandrake"
+    },
+    "text": "草药课上，斯普劳特教授让大家给曼德拉草换盆。你戴上了耳罩，但旁边一个同学的耳罩没戴好，被曼德拉草的哭声震得差点摔倒。你伸手扶住了他，斯普劳特对你笑了笑。"
+},
+{
+    "id": "lesson_herbology_fluxweed",
+    "phase": "lesson",
+    "subject": "草药学",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_herbology_fluxweed"
+    },
+    "text": "草药课上，你第一次独自完成了流液草的修剪。斯普劳特教授检查了你的工作，满意地点了点头。\"很好，切口很整齐。下次可以试试帮其他同学。\"你旁边的汉娜·艾博向你投来求助的目光。"
+},
+{
+    "id": "lesson_herbology_bubotuber",
+    "phase": "lesson",
+    "subject": "草药学",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_herbology_bubotuber"
+    },
+    "text": "草药课上，斯普劳特教授教大家如何从巴波块茎上取脓液。你戴上了龙皮手套，小心翼翼地挤压那个肿胀的植物。一股黄绿色的液体喷了出来，溅到了旁边贾斯廷·芬列里的袖子上。\"对不起——\"\"没关系！\"他兴奋地说，\"这是什么东西？它能做什么？\"斯普劳特开始解释，贾斯廷的提问持续了整堂课。"
+},
+{
+    "id": "lesson_dada_garlic",
+    "phase": "lesson",
+    "subject": "黑魔法防御术",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_dada_garlic"
+    },
+    "text": "黑魔法防御术课上，奇洛教授用他一贯的结巴语气讲了吸血鬼的防御方法。教室里弥漫着大蒜味，据说是他头巾里塞了大蒜来防身。你旁边的同学小声说：\"他为什么那么怕吸血鬼？\"你不知道答案，但你注意到奇洛的目光偶尔会飘向教室后排的哈利·波特。"
+},
+{
+    "id": "lesson_dada_werewolf",
+    "phase": "lesson",
+    "subject": "黑魔法防御术",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_dada_werewolf"
+    },
+    "text": "黑魔法防御术课上，奇洛教授在黑板上画了一个狼人示意图。他的手在发抖，粉笔断了好几次。\"狼——狼人是非常——非常危险的——\"你努力记着笔记，但奇洛的结巴让你不确定自己有没有记对关键部分。"
+},
+{
+    "id": "lesson_history_goblins",
+    "phase": "lesson",
+    "subject": "魔法史",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_history_goblins"
+    },
+    "text": "魔法史课上，宾斯教授用他一成不变的单调声音讲着1612年的妖精叛乱。他的身体从黑板里穿过去的时候，教室里有一半人已经睡着了。你努力睁开眼睛，但你的羽毛笔在笔记本上划出了一道歪歪扭扭的线。"
+},
+{
+    "id": "lesson_history_witch_trials",
+    "phase": "lesson",
+    "subject": "魔法史",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_history_witch_trials"
+    },
+    "text": "魔法史课上，宾斯教授讲到了中世纪的女巫审判。\"当然，\"他用那种一成不变的沙哑声音说，\"真正的女巫根本不会被烧死——她们会用火焰冻结咒假装尖叫，然后悄悄溜走。\"这是这堂课你唯一记住的一句话。"
+},
+{
+    "id": "lesson_astronomy_jupiter",
+    "phase": "lesson",
+    "subject": "天文学",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_astronomy_jupiter"
+    },
+    "text": "天文学课上，辛尼斯塔教授带大家在午夜观测木星的卫星。你透过望远镜看到了四个小光点排成一条线。\"那是伽利略卫星，\"教授说，\"用麻瓜的名字命名的——但他们是在魔法师发现它们之后才看到的。\"你旁边的帕德玛·帕蒂尔若有所思地点了点头。"
+},
+{
+    "id": "lesson_astronomy_venus",
+    "phase": "lesson",
+    "subject": "天文学",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "event_not_completed": "lesson_astronomy_venus"
+    },
+    "text": "天文学课上，凌晨两点，你裹着毯子在天文塔上观测金星。它比其他星星都亮，在天蝎座旁边发着柔和的光。辛尼斯塔教授轻声说：\"金星是爱之星——但它的表面全是硫酸云。\"你决定不要在占星学上想太多。"
+},
+{
+    "id": "lesson_flying_practice",
+    "phase": "lesson",
+    "subject": "飞行课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "min": 4 },
+        "event_not_completed": "lesson_flying_practice"
+    },
+    "text": "飞行课上，霍琦夫人让大家练习绕球场飞行。你的扫帚很听话，飞得又稳又快。你经过看台时，看到几个一年级学生坐在那里——大概是下一节课的。其中一个朝你挥了挥手。"
+},
+{
+    "id": "lesson_flying_wind",
+    "phase": "lesson",
+    "subject": "飞行课",
+    "trigger_condition": {
+        "schoolYear": { "exact": 1 },
+        "month": { "exact": 9 },
+        "week": { "min": 4 },
+        "event_not_completed": "lesson_flying_wind"
+    },
+    "text": "飞行课上，今天风很大。你的扫帚被吹得有点晃，但你稳住了。霍琦夫人在下面吹着银哨：\"注意风向！调整扫帚角度——对，就是这样！\"你降落时头发被吹得乱七八糟，但你觉得这是最好玩的一次飞行课。"
+}
+]

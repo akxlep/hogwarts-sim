@@ -41,6 +41,7 @@ const UI = {
 
 // 所有阶段的section引用
 const StageSections = {
+    'lesson': document.getElementById('stage-lesson'),  // 新增
     'event': document.getElementById('stage-event'),
     'plan': document.getElementById('stage-plan'),
     'map': document.getElementById('stage-map'),
@@ -623,12 +624,16 @@ function checkTriggerCondition(condition) {
     if (condition.schoolYear.exact !== undefined && p.schoolYear !== condition.schoolYear.exact) return false;
     }
 
-    // 时间检查（精确匹配）
+    // 时间检查（精确匹配 + 范围）
     if (condition.month) {
         if (condition.month.exact !== undefined && p.month !== condition.month.exact) return false;
+        if (condition.month.min !== undefined && p.month < condition.month.min) return false;
+        if (condition.month.max !== undefined && p.month > condition.month.max) return false;
     }
     if (condition.week) {
         if (condition.week.exact !== undefined && p.week !== condition.week.exact) return false;
+        if (condition.week.min !== undefined && p.week < condition.week.min) return false;
+        if (condition.week.max !== undefined && p.week > condition.week.max) return false;
     }
 
 
@@ -648,6 +653,11 @@ function checkTriggerCondition(condition) {
     // 检查某事件是否已完成（用于多阶段事件的条件）
     if (condition.event_completed) {
         if (!p.completedEvents.includes(condition.event_completed)) return false;
+    }
+
+    // 检查某事件是否未完成（用于一次性事件排除）
+    if (condition.event_not_completed) {
+        if (p.completedEvents.includes(condition.event_not_completed)) return false;
     }
 
 
@@ -755,7 +765,8 @@ function advanceWeekSafely() {
     // 到达正常周，重置计划，进入行动安排
     GameState.weeklyPlan = [];
     GameState.usedActionPoints = 0;
-    showPlanStage();
+    // 先进入课堂页面
+    showLessonStage();
     updateTimeDisplay();
     saveGame();
 }
@@ -1302,6 +1313,11 @@ function bindEvents() {
     });
     document.getElementById('btn-close-relationships').addEventListener('click', () => {
         document.getElementById('relationships-modal').style.display = 'none';
+    });
+
+    // 课堂页面按钮
+    document.getElementById('btn-lesson-continue').addEventListener('click', () => {
+        showPlanStage();
     });
 }
 

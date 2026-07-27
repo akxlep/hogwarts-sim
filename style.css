@@ -154,6 +154,64 @@ body {
     background-color: #3e5a2e;
 }
 
+/* ==================== 阶段零：本周课程 ==================== */
+#lesson-list {
+    margin-bottom: 20px;
+}
+
+.lesson-text {
+    padding: 12px 0;
+    border-bottom: 1px solid #2a2a4a;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.lesson-text:last-child {
+    border-bottom: none;
+}
+
+#btn-lesson-continue {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #0f3460;
+    color: #e0d5c1;
+    border: 1px solid #4a3f35;
+    padding: 12px 24px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit;
+    transition: background-color 0.2s;
+}
+
+#btn-lesson-continue:hover {
+    background-color: #1a4a7a;
+}
+
+/* 课程文本逐条滚动动画 */
+.lesson-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lessonFadeIn 1.2s ease forwards;
+}
+
+.lesson-text:nth-child(1) { animation-delay: 0s; }
+.lesson-text:nth-child(2) { animation-delay: 0.4s; }
+.lesson-text:nth-child(3) { animation-delay: 0.8s; }
+.lesson-text:nth-child(4) { animation-delay: 1.2s; }
+.lesson-text:nth-child(5) { animation-delay: 1.6s; }
+
+@keyframes lessonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ==================== 阶段一：计划 ==================== */
 #plan-list {
     margin-bottom: 16px;
