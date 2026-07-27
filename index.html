@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霍格沃茨人生模拟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== 游戏主容器 ==================== -->
+    <div id="game">
+
+        <!-- ========== 顶部固定栏 ========== -->
+        <header id="top-bar">
+            <span id="time-display">~ 序章 ~</span>
+            <button id="menu-btn" title="菜单">☰</button>
+        </header>
+
+        <!-- ========== 主内容区（六个阶段容器） ========== -->
+        <main id="content">
+
+            <!-- 序章 / 阶段四共用：剧情事件展示 -->
+            <section id="stage-event" class="stage">
+                <h2 id="event-title"></h2>
+                <div id="event-description"></div>
+                <div id="event-choices"></div>
+                <div id="event-input-area" style="display:none;">
+                    <input type="text" id="event-input" placeholder="输入你的名字" autocomplete="off">
+                    <button id="event-input-btn">确认</button>
+                </div>
+            </section>
+
+            <!-- 阶段一：本周行动安排 -->
+            <section id="stage-plan" class="stage" style="display:none;">
+                <h2>本周行动安排</h2>
+                <div id="plan-list"></div>
+                <div id="plan-summary">
+                    <p>剩余行动点：<span id="action-points">5</span></p>
+                </div>
+                <div id="plan-actions">
+                    <button id="btn-repeat-last">↻ 同上一周</button>
+                    <button id="btn-add-action">＋ 添加行动</button>
+                    <button id="btn-confirm">确认本周计划</button>
+                    <button id="btn-skip-week">⏭ 跳过本周</button>
+                </div>
+            </section>
+
+            <!-- 阶段二A：小地图（选择地点） -->
+            <section id="stage-map" class="stage" style="display:none;">
+                <h2>选择一个地点</h2>
+                <div id="location-grid"></div>
+                <button id="btn-back-from-map">← 返回</button>
+            </section>
+
+            <!-- 阶段二B：选择行动方向 -->
+            <section id="stage-direction" class="stage" style="display:none;">
+                <h2 id="direction-location-name"></h2>
+                <p>你想在这里做什么？</p>
+                <div id="direction-list"></div>
+                <button id="btn-back-from-direction">← 返回地点选择</button>
+            </section>
+
+            <!-- 阶段三：周结算 -->
+            <section id="stage-summary" class="stage" style="display:none;">
+                <h2 id="summary-title">第1周结束</h2>
+                <p>本周总结：</p>
+                <div id="summary-list"></div>
+                <button id="btn-continue">继续</button>
+            </section>
+
+        </main>
+
+        <!-- ========== 底部固定栏：玩家信息 ========== -->
+        <footer id="bottom-bar" style="display:none;">
+            <button id="btn-relationships" title="好感度">👥</button>
+            <div id="player-info">
+                <p id="player-name-house"></p>
+                <p id="player-attributes"></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== 菜单弹窗 ==================== -->
+    <div id="menu-modal" style="display:none;">
+        <div id="menu-content">
+            <h3>菜单</h3>
+            <button id="btn-save">保存游戏</button>
+            <button id="btn-load">读取存档</button>
+            <button id="btn-close-menu">关闭</button>
+        </div>
+    </div>
+
+    <script src="game-engine.js"></script>
+    <!-- 好感度弹窗 -->
+    <div id="relationships-modal" style="display:none;">
+        <div id="relationships-content">
+            <h3>好感度</h3>
+            <div id="relationships-list"></div>
+            <button id="btn-close-relationships">关闭</button>
+        </div>
+    </div>
+</body>
+</html>
