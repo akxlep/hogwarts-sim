@@ -17,11 +17,59 @@ async function loadLessonData() {
     }
 }
 
+// 软上限函数：超过60分后，增长速度减半；超过100分后，增长速度减半；超过150分后，增长速度减半
+function applySoftCap(value) {
+    if (value <= 60) return value;
+    if (value <= 100) return 60 + (value - 60) * 0.5;
+    if (value <= 150) return 80 + (value - 100) * 0.25;
+    return 92.5 + (value - 150) * 0.1;
+}
+// 更新所有课程成绩
+function updateAllCourseGrades() {
+    const p = GameState.player;
+    const a = p.attributes;
+    
+    if (!p.courses) p.courses = {};
+    
+    const courseWeights = {
+        '魔咒学':   { courage: 0,   wisdom: 0.5, charm: 0.5, cunning: 0   },
+        '变形术':   { courage: 0.3, wisdom: 0.7, charm: 0,   cunning: 0   },
+        '魔药学':   { courage: 0,   wisdom: 0.6, charm: 0,   cunning: 0.4 },
+        '草药学':   { courage: 0.2, wisdom: 0.5, charm: 0.3, cunning: 0   },
+        '黑魔法防御术': { courage: 0.5, wisdom: 0.3, charm: 0, cunning: 0.2 },
+        '魔法史':   { courage: 0,   wisdom: 0.8, charm: 0.2, cunning: 0   },
+        '天文学':   { courage: 0,   wisdom: 0.6, charm: 0,   cunning: 0.4 },
+        '飞行课':   { courage: 0.6, wisdom: 0,   charm: 0.4, cunning: 0   }
+    };
+    
+    Object.entries(courseWeights).forEach(([course, weights]) => {
+        const effectiveCourage = applySoftCap(a.courage);
+        const effectiveWisdom = applySoftCap(a.wisdom);
+        const effectiveCharm = applySoftCap(a.charm);
+        const effectiveCunning = applySoftCap(a.cunning);
+        
+        const increment = (
+            effectiveCourage * weights.courage +
+            effectiveWisdom * weights.wisdom +
+            effectiveCharm * weights.charm +
+            effectiveCunning * weights.cunning
+        ) / 20;
+        
+        if (!p.courses[course]) p.courses[course] = 0;
+        p.courses[course] = Math.round((p.courses[course] + increment) * 10) / 10;
+    });
+}
+
+
+
 // ---------- 课程页面 ----------
 
 function showLessonStage() {
     // 切换到课程页面
     showStage('lesson');
+    
+    // 每周自动更新所有课程成绩
+    updateAllCourseGrades();
     
     // 随机抽取课程片段
     const lessons = selectWeeklyLessons();

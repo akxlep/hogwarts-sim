@@ -59,12 +59,14 @@ async function initGame() {
 // 加载所有JSON数据文件
 async function loadAllData() {
     try {
-        const [locationsData, actionsData, eventsData, scheduleData ,npcsData] = await Promise.all([
+        const [locationsData, actionsData, eventsData, scheduleData ,npcsData ,playerDefaults ,dailyEventsData ] = await Promise.all([
             fetch('data/locations.json').then(r => r.json()),
             fetch('data/actions.json').then(r => r.json()),
             fetch('data/events.json').then(r => r.json()),
             fetch('data/schedule.json').then(r => r.json()),
-            fetch('data/npcs.json').then(r => r.json())
+            fetch('data/npcs.json').then(r => r.json()),
+            fetch('data/player.json').then(r => r.json()),
+            fetch('data/daily.json').then(r => r.json()),
         ]);
         
         // 地点转为以id为键的对象，方便查找
@@ -77,9 +79,12 @@ async function loadAllData() {
         
         Events = eventsData;
         Schedule = scheduleData;
+        DailyEvents = dailyEventsData;
 
         NPCs = {};
         npcsData.forEach(npc => { NPCs[npc.id] = npc; });
+
+        window.PlayerDefaults = playerDefaults;
         
         console.log('数据加载完成', { Locations, Actions, Events, Schedule, NPCs });
     } catch (error) {
@@ -98,20 +103,8 @@ function loadPlayerState() {
     }
     // 开新档，从player.json加载初始状态
     GameState.lastWeekPlan = [];  // 新增：保存上一周计划
-    GameState.player = {
-        name: '',
-        house: '',
-        gender: '',
-        schoolYear: 1,   // 年级（1-7）
-        year: 1991,       // 当前现实年份
-        month: 9,         // 当前月份（9-6）
-        week: 1,          // 当前周（1-4）
-        attributes: { courage: 40, wisdom: 40, charm: 40, cunning: 40 },
-        tags: [],
-        relationships: {},
-        inventory: [],
-        completedEvents: []
-    };
+    // 从 player.json 读取默认值（深拷贝）
+    GameState.player = JSON.parse(JSON.stringify(window.PlayerDefaults));
     // 根据 npcs.json 自动初始化所有 NPC 的关系
     Object.keys(NPCs).forEach(npcId => {
         if (!GameState.player.relationships[npcId]) {
@@ -185,7 +178,15 @@ function updateTimeDisplay() {
 
 function updatePlayerUI() {
     if (!GameState.player.name) return;
-    UI.playerNameHouse.textContent = `${GameState.player.name} | ${GameState.player.house}`;
+
+    let genderIcon = '';
+    if (GameState.player.gender === 'male') {
+        genderIcon = '🧙‍♂️ ';
+    } else if (GameState.player.gender === 'female') {
+        genderIcon = '🧙‍♀️ ';
+    }
+
+    UI.playerNameHouse.textContent = `${genderIcon}${GameState.player.name} | ${GameState.player.house}`;
     const a = GameState.player.attributes;
     UI.playerAttributes.textContent = `勇气${a.courage}  智慧${a.wisdom}  魅力${a.charm}  狡黠${a.cunning}`;
 }
@@ -518,8 +519,7 @@ function selectWeeklyEvent() {
 // 根据地点和方向选择日常事件（概率触发已在调用方处理）
 function selectDailyEvent(locationId, directionId) {
     // 筛选符合条件的日常事件
-    const candidates = Events.filter(e => {
-        if (e.phase !== 'daily') return false;
+    const candidates = DailyEvents.filter(e => {
         if (e.location !== locationId) return false;
         if (e.direction !== directionId) return false;
 
@@ -1000,8 +1000,17 @@ function handleEventChoice(eventData, choice) {
 
 // 显示 follow_up 的文本，然后给一个继续按钮
 function showFollowUpDescription(followUp, parentEvent) {
+    // 如果 follow_up 有 description_variants，先筛选匹配的变体
+    let descriptionText = followUp.description || '';
+    if (followUp.description_variants && Array.isArray(followUp.description_variants)) {
+        const matched = followUp.description_variants.find(v => 
+            !v.condition || checkTriggerCondition(v.condition)
+        );
+        if (matched) descriptionText = matched.text;
+    }
+    
     UI.eventTitle.textContent = parentEvent.title || '';
-    UI.eventDescription.textContent = followUp.description || '';
+    UI.eventDescription.textContent = descriptionText;
     UI.eventChoices.innerHTML = '';
     UI.eventInputArea.style.display = 'none';
 
@@ -1319,6 +1328,26 @@ function bindEvents() {
     document.getElementById('btn-lesson-continue').addEventListener('click', () => {
         showPlanStage();
     });
+
+    // 课程属性面板
+    document.getElementById('btn-courses').addEventListener('click', () => {
+        coursePageIndex = 0; // 每次打开弹窗回到第一页
+        renderCourses();
+        document.getElementById('courses-modal').style.display = 'flex';
+    });
+    document.getElementById('btn-close-courses').addEventListener('click', () => {
+        document.getElementById('courses-modal').style.display = 'none';
+    });
+
+    // 翻页按钮
+    document.getElementById('btn-course-prev').addEventListener('click', () => {
+        coursePageIndex--;
+        renderCourses();
+    });
+    document.getElementById('btn-course-next').addEventListener('click', () => {
+        coursePageIndex++;
+        renderCourses();
+    });
 }
 
 function renderRelationships() {
@@ -1357,7 +1386,60 @@ function renderRelationships() {
     });
 }
 
+// ---------- 获取课程成绩 ----------
+function getCourseGrade(courseName) {
+    const p = GameState.player;
+    if (!p.courses || p.courses[courseName] === undefined) return 0;
+    return Math.round(p.courses[courseName]);
+}
 
+// ---------- 课程属性渲染 ----------
+let coursePageIndex = 0;
+const coursesPerPage = 8; // 每页显示4门课
+
+function renderCourses() {
+    const list = document.getElementById('courses-list');
+    list.innerHTML = '';
+    
+    const allCourses = [
+        { name: '魔咒学', icon: '🪄' },
+        { name: '变形术', icon: '🦎' },
+        { name: '魔药学', icon: '🧪' },
+        { name: '草药学', icon: '🌿' },
+        { name: '黑魔法防御术', icon: '🔮' },
+        { name: '魔法史', icon: '📜' },
+        { name: '天文学', icon: '🌌' },
+        { name: '飞行课', icon: '🧹' }
+    ];
+    
+    // 计算总页数
+    const totalPages = Math.ceil(allCourses.length / coursesPerPage);
+    
+    // 确保页码不越界
+    if (coursePageIndex >= totalPages) coursePageIndex = totalPages - 1;
+    if (coursePageIndex < 0) coursePageIndex = 0;
+    
+    // 计算当前页的起始和结束索引
+    const start = coursePageIndex * coursesPerPage;
+    const end = Math.min(start + coursesPerPage, allCourses.length);
+    const pageCourses = allCourses.slice(start, end);
+    
+    // 渲染当前页的课程
+    pageCourses.forEach(course => {
+        const grade = getCourseGrade(course.name);
+        const row = document.createElement('div');
+        row.className = 'course-row';
+        row.innerHTML = `
+            <span class="course-name">${course.icon} ${course.name}</span>
+            <span class="course-grade">${grade}</span>
+        `;
+        list.appendChild(row);
+    });
+    
+    // 更新导航按钮状态
+    document.getElementById('btn-course-prev').disabled = (coursePageIndex === 0);
+    document.getElementById('btn-course-next').disabled = (coursePageIndex >= totalPages - 1);
+}
 
 // ---------- 启动游戏 ----------
 window.addEventListener('DOMContentLoaded', () => {

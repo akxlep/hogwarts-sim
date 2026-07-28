@@ -1,0 +1,20 @@
+{
+    "name": "",
+    "house": "",
+    "gender": "",
+    "schoolYear": 1,
+    "year": 1991,
+    "month": 9,
+    "week": 1,
+    "attributes": {
+        "courage": 40,
+        "wisdom": 40,
+        "charm": 40,
+        "cunning": 40
+    },
+    "courses": {},
+    "tags": [],
+    "relationships": {},
+    "inventory": [],
+    "completedEvents": []
+}

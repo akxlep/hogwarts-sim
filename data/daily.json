@@ -1,0 +1,356 @@
+[
+    {
+    "id": "library_study_disturbance",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 3,
+    "trigger_condition": {},
+    "title": "图书馆的小插曲",
+    "description_variants": [
+        {
+            "text": "一股甜腻的糖浆味飘了过来。你抬头，看到对面桌的赫奇帕奇男生正偷偷撕开一块糖浆馅饼的包装。平斯夫人像嗅到血腥味的鲨鱼一样冲了过来，把他赶了出去。"
+        },
+        {
+            "text": "一只纸青蛙从隔壁桌跳到你摊开的《魔法史》上，腿还在蹬。远处一个格兰芬多女生拼命朝你比口型：“对不起——”"
+        },
+        {
+            "text": "啪嗒。你旁边桌上的墨水瓶突然翻了，紫色墨水洒了一桌。一个二年级学生手忙脚乱地找魔杖，但显然还没学会清理咒。"
+        },
+        {
+            "text": "窗外传来一阵细微的敲击声。你转头，看到一只猫头鹰正用喙轻轻啄着玻璃窗，爪子上绑着一封信。它大概找错窗口了。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "无视干扰，继续埋头苦读",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_living_book",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "一本不太安分的书",
+    "description_variants": [
+        {
+            "text": "你从书架上抽出一本《妖怪们的妖怪书》，书脊在你手中蠕动，封面猛地张开，露出一排细密的牙齿。它咬了你的手指，然后安静下来，仿佛什么都没发生。"
+        },
+        {
+            "text": "你翻开一本《隐形术与幻身咒》，发现里面全是空白页。你困惑地翻了好几页，突然意识到——文字大概需要你用魔杖点一下才会显形。"
+        },
+        {
+            "text": "你找到一本《被遗忘的古老魔药》，但每翻一页，前一页的内容就消失了。你只能读一遍。"
+        },
+        {
+            "text": "你碰掉了一本薄薄的小册子。弯腰捡起来时，发现封面上写着《如何在不被平斯夫人发现的情况下偷看禁书》。你左右看了看——平斯夫人正在远处整理书架。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "研究一下这本书",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_dancing_letters",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 2,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 25 } }
+    },
+    "title": "会跳舞的字母",
+    "description_variants": [
+        {
+            "text": "你翻开一本旧版《标准咒语》，发现某一页的字母正在缓慢移动。它们像蚂蚁一样排成一行，然后突然散开，重新组合成一句话：“如果你读得懂，那这本书就太无聊了。”"
+        },
+        {
+            "text": "你摊开变形术课本，发现插图里的猫正在追自己尾巴——然后它注意到你，停下来朝你眨了眨眼。"
+        },
+        {
+            "text": "你正在读魔药配方，页面上的数字突然跳动了一下，把“3”改成了“2”。你皱起眉。是印刷错误，还是这本书在调皮？"
+        }
+    ],
+    "choices": [
+        {
+            "text": "翻到下一页看看还有什么花样",
+            "effect": { "attributes": { "wisdom": 1, "cunning": 1 } }
+        },
+        {
+            "text": "合上书，换一本正常点的",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_giant_squid",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 1,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 20 } }
+    },
+    "title": "窗外有东西在动",
+    "description_variants": [
+        {
+            "text": "你正埋头抄写魔药配方，余光突然捕捉到窗外有什么在移动。黑湖的水面在月光下泛着银光。一只巨大的触手从水面下探出来，懒洋洋地拍了一下窗户玻璃，然后慢慢缩回去了。"
+        },
+        {
+            "text": "窗外飘起了细雪，黑湖的湖面边缘开始结冰。一只乌贼触手从冰窟窿里伸出来，把浮冰推到一边。你看了好一会儿才继续学习。"
+        },
+        {
+            "text": "阳光在水面上闪着碎金。你看到巨乌贼的轮廓在浅水处缓缓游过，影子投在湖底的石头上。它大概在晒太阳。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "继续写作业",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_study_silent_spell",
+    "phase": "daily",
+    "location": "library",
+    "direction": "study",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 40 } },
+        "event_not_completed": "library_study_silent_spell"
+    },
+    "title": "自习室里的高年级学生",
+    "description": "你在图书馆最深处找到角落坐下。隔壁自习室里传来一阵低沉的嗡嗡声，像一只巨大的蜜蜂被关在柜子里。\n\n你透过门缝瞥了一眼——一个拉文克劳高年级女生正对着悬浮的金属球念咒。球体表面布满细密符文，随着她的咒语旋转，越转越快。\n\n她注意到了你的目光。金属球啪地落在桌上。门被一股无形的力量推开了。\n\n“偷看别人练咒语是很不礼貌的。”她说。但她嘴角有一丝笑意。“不过既然你已经看到了——你知道无声咒吗？”",
+    "choices": [
+        {
+            "text": "“不太了解，但我想知道。”",
+            "effect": { "attributes": { "wisdom": 2 } },
+            "follow_up": {
+                "description": "她点了点头，拿起金属球。“N.E.W.T.级别的咒语——你还太早了。但记住，最好的咒语是那些不需要说出来的。”\n\n她把球扔给你，你接住了。球在你掌心里余温尚存。\n\n“下次敲门。”她转身收拾东西。临走前，她在门口停了一下。“不过你倒是挺有眼光的——选了图书馆最安静的角落。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "“抱歉，我不是有意偷看的。”",
+            "condition": { "attribute": { "charm": { "min": 30 } } },
+            "effect": { "attributes": { "charm": 1, "wisdom": 1 } },
+            "follow_up": {
+                "description": "“没关系。”她把魔杖插回口袋，语气缓和了一些。“反正我该休息了。”\n\n她推开门走出来，经过你身边时低头看了一眼你摊开的书。“《标准咒语·初级》？一年级？”她笑了笑，有点怀念。“好好学。沉默咒要到六年级，但提前了解没坏处。”",
+                "effect": {}
+            }
+        },
+        {
+            "text": "“我只是在找安静的地方看书。”",
+            "effect": { "attributes": { "wisdom": 1, "cunning": 1 } },
+            "follow_up": {
+                "description": "“那就继续看你的书吧。”她的语气不冷不热。\n\n门在你面前轻轻关上了。但你注意到桌上有一张纸片——她留下了一张画着简单符文的便签。角落里写着一行小字：“无声咒的第一步：先学会在心里念咒。”",
+                "effect": {}
+            }
+        }
+    ]
+},
+
+
+
+
+
+
+
+
+
+{
+    "id": "library_explore_moving_shelf",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "会移动的书架",
+    "description_variants": [
+        {
+            "text": "你伸手去够顶层的一本厚书，指尖刚碰到书脊，整个书架突然向左边滑动了半英寸。你吓了一跳，缩回手。书架又安静了。也许只是城堡在“呼吸”——但你在书架后面看到了一小段通往深处的楼梯，被灰尘覆盖着。"
+        },
+        {
+            "text": "你靠在一个书架上休息，肩膀不小心压到了一本凸出的书。咔嗒一声，书架旋转了九十度，把你带进了另一条过道。你回头一看，书架已经恢复了原位。你面前是一排关于“古代魔文”的藏书——你之前从没找到过这个区域。"
+        },
+        {
+            "text": "你在书架之间穿行时，注意到两排书架之间的距离似乎比刚才更窄了。你停下来，仔细观察——它们在极其缓慢地靠近，像是想把某本书夹在中间。你侧身挤出来，决定下次带个朋友一起来。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "探索新发现的区域",
+            "effect": { "attributes": { "cunning": 1, "courage": 1 } }
+        },
+        {
+            "text": "记住位置，下次再来",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_graffiti",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "某人的涂鸦",
+    "description_variants": [
+        {
+            "text": "你翻开一本《标准咒语·初级》，发现某一页的页脚有一行潦草的字迹：“斯内普的魔药课——加一滴老鼠胆汁，不是两滴！！！切记！！！”笔迹压得很重，显然是在极度焦虑下写的。下面还有一行不同颜色的笔迹，写着“你救了我的命。——H.G.”。你盯着那行字看了一会儿，忍不住笑了一下。"
+        },
+        {
+            "text": "一本《魔法史》的空白页上画满了简笔画。有人用火柴人画了一整场巫师决斗：两个小人互相发射魔咒，第三个小人从后面偷偷靠近，第四个站在旁边举手。图下面写着一行字：“巴希达·巴沙特要是看到这个，大概会从坟墓里爬出来。——E.M.”"
+        }
+    ],
+    "choices": [
+        {
+            "text": "翻翻看还有没有别的涂鸦",
+            "effect": { "attributes": { "wisdom": 1 } }
+        },
+        {
+            "text": "在下面添一行自己的回复",
+            "effect": { "attributes": { "charm": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_biting_book",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 2,
+    "trigger_condition": {},
+    "title": "被书咬了之后",
+    "description_variants": [
+        {
+            "text": "你刚抽出一本《妖怪们的妖怪书》，它立刻张开书脊上的嘴，狠狠咬了一下你的拇指。你本能地把书摔在桌上。平斯夫人从远处投来一记眼刀。你赶紧把书翻过来，用一根散落的鞋带把它捆住。它安静了，但还在微微颤抖，像是在生气。"
+        },
+        {
+            "text": "你在翻阅一本毛茸茸的旧书时，书页突然合拢，夹住了你的手指。不疼，但拔不出来。你用力拽了几下，书才松口。封面上的书名是《被遗忘的魔药配方》。你觉得自己被一本魔药书嫌弃了。"
+        },
+        {
+            "text": "你碰到一本封面上长满尖刺的植物图鉴——《食肉植物与它们的食谱》。它没有咬你，但它发出了一声低沉的咕噜声，像是饿了。你决定不要翻开它。"
+        }
+    ],
+    "choices": [
+        {
+            "text": "用鞋带把书捆起来",
+            "effect": { "attributes": { "courage": 1 } }
+        },
+        {
+            "text": "抚摸书脊，试着安抚它",
+            "effect": { "attributes": { "wisdom": 1, "charm": 1 } }
+        },
+        {
+            "text": "把书放回去，换一本正常的",
+            "effect": { "attributes": { "wisdom": 1 } }
+        }
+    ]
+},
+{
+    "id": "library_explore_hidden_door",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "wisdom": { "min": 25 } },
+        "event_not_completed": "library_explore_hidden_door"
+    },
+    "title": "被遗忘的角落",
+    "description": "图书馆最深处的书架尽头，你发现了一扇漆面斑驳的小门。铜把手已经生锈，门缝里透出淡淡的墨水和旧羊皮纸的味道。门上有一块磨损的黄铜铭牌，上面刻着：“仅供资深图书管理员使用——或任何知道怎么敲门的人。”\n\n你犹豫了一下。这扇门可能已经几十年没被打开过了。",
+    "choices": [
+        {
+            "text": "轻轻敲门，试试运气",
+            "effect": { "attributes": { "courage": 1, "charm": 1 } },
+            "follow_up": {
+                "description": "你用指节在门上轻轻敲了三下。沉默。然后——门把手自己转动了。门后是一间极小的阅览室，只有一张桌子和一把椅子。桌上摊着一本翻到一半的书，旁边的墨水瓶还没有干。\n\n有人刚在这里。但房间里没有别人。\n\n你记住了这个地方。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "记住位置，以后再来",
+            "effect": { "attributes": { "cunning": 2 } },
+            "follow_up": {
+                "description": "现在还不是时候。但你记下了——最深处的书架，第三排，靠着墙。也许下次带个同伴，或者等夜深人静的时候再来。谨慎从来不是坏事。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "library_explore_snape_notes",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 3,
+    "trigger_condition": {
+        "attribute": { "cunning": { "min": 30 } },
+        "event_not_completed": "library_explore_snape_notes"
+    },
+    "title": "前任的笔记",
+    "description": "你从书架上抽出一本破旧的《魔法药剂与药水》。翻开扉页，上面写着一个名字：“西弗勒斯·斯内普”。\n\n下面是密密麻麻的批注。几乎每一道配方的边上都修改了步骤或替换了原料。字迹锐利而紧凑，像是在和课本作者争论。有一条批注尤其醒目：\n\n“官方配方是错的。用月长石粉代替珍珠粉，效果提升三倍。试试看——如果你不是蠢货的话。”\n\n你抬头看了看四周。这是斯内普学生时代的课本。上面的每一行字都在告诉你一件事：他从来就不是一个普通的学生。",
+    "choices": [
+        {
+            "text": "仔细阅读批注，记下要点",
+            "effect": { "attributes": { "wisdom": 2 } },
+            "follow_up": {
+                "description": "你翻了几页。斯内普的批注不仅修改了配方，还有对课本作者的嘲讽、对教学大纲的质疑、以及几条你自己都没听过的魔药技巧。你撕下一张空白羊皮纸，匆匆记下了最关键的几条。\n\n下次魔药课，也许能派上用场——虽然你大概不会告诉别人这些技巧是从哪来的。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "把书借走，私下研究",
+            "effect": { "attributes": { "cunning": 1, "charm": -1 } },
+            "follow_up": {
+                "description": "你把书塞进书包。平斯夫人没有注意到。这是斯内普的私人批注——你不确定他是否愿意让别人看到。但你更不确定自己是否愿意把它放回去。\n\n有些知识太珍贵了，不能留在公共书架上。",
+                "effect": {}
+            }
+        }
+    ]
+},
+{
+    "id": "library_explore_duel_note",
+    "phase": "daily",
+    "location": "library",
+    "direction": "explore",
+    "weight": 4,
+    "trigger_condition": {
+        "tag_required": ["夜游经历"],
+        "event_not_completed": "library_explore_duel_note"
+    },
+    "title": "夜游留下的痕迹",
+    "description": "你在一本厚重的《霍格沃茨校规》里发现了一张对折的羊皮纸。上面是马尔福的笔迹：\n\n“今晚，奖品陈列室，巫师决斗。如果你敢的话，波特。——M.”\n\n下面有人用红墨水潦草地回复：“他没来。他是骗子。——H.P.”\n\n再下面是一行整洁的字迹，墨水的颜色和前两行都不同：“我早就说了。——H.G.”\n\n背面还有一行铅笔字，几乎看不清楚：“我真的不该跟来的。——N.L.”",
+    "choices": [
+        {
+            "text": "把纸条收好，留作纪念",
+            "effect": { "attributes": { "charm": 1 } },
+            "follow_up": {
+                "description": "你把这四行字小心地折好，放进口袋。马尔福的陷阱，哈利的愤怒，赫敏的无奈，还有纳威偷偷加上的那句话。\n\n也许有一天你会把这纸条还给它的主人——或者留作霍格沃茨回忆的一部分。",
+                "effect": {}
+            }
+        },
+        {
+            "text": "模仿笔迹，加一行自己的话",
+            "effect": { "attributes": { "cunning": 2 } },
+            "follow_up": {
+                "description": "你拿起羽毛笔，在赫敏那行字下面加了一句：“我也在场。——你猜是谁。”\n\n然后你把纸条放回书里。也许很多年后，会有人翻开这本书，看到这五行字，猜测那晚到底有多少人参与了这场根本没有发生的决斗。",
+                "effect": {}
+            }
+        }
+    ]
+}
+
+
+
+]
