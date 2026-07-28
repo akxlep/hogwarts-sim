@@ -105,6 +105,10 @@ function loadPlayerState() {
     GameState.lastWeekPlan = [];  // 新增：保存上一周计划
     // 从 player.json 读取默认值（深拷贝）
     GameState.player = JSON.parse(JSON.stringify(window.PlayerDefaults));
+    // 兼容老存档：如果没有 electives 字段，初始化为空数组
+    if (!GameState.player.electives) {
+        GameState.player.electives = [];
+    }
     // 根据 npcs.json 自动初始化所有 NPC 的关系
     Object.keys(NPCs).forEach(npcId => {
         if (!GameState.player.relationships[npcId]) {
@@ -721,8 +725,13 @@ function advanceWeekSafely() {
             triggerHolidayEvent('easter_end');
             return;
         }
-        if (p.month === 6 && (p.week === 1 || p.week === 2)) {
-            triggerExamEvent();
+        // 期末考试：第1周考试，第2周出成绩
+        if (p.month === 6 && p.week === 1) {
+            triggerExamEvent('final_exam');
+            return;
+        }
+        if (p.month === 6 && p.week === 2) {
+            triggerExamEvent('final_results');
             return;
         }
         // 暑假开始：6月第3周
@@ -785,11 +794,11 @@ function triggerHolidayEvent(holidayType) {
     }
 }
 
-function triggerExamEvent() {
-    const examEvents = Events.filter(e => e.phase === 'exam');
+function triggerExamEvent(examType) {
+    const examEvents = Events.filter(e => e.phase === 'exam' && e.exam_type === examType);
     if (examEvents.length > 0) {
         const event = examEvents[Math.floor(Math.random() * examEvents.length)];
-        event._isHoliday = true; // 同样使用 _isHoliday 标记，表示不能自由行动
+        event._isHoliday = true;
         showStage('event');
         renderEvent(event);
     } else {
@@ -904,6 +913,12 @@ function renderEvent(eventData) {
     
     return;
 }
+
+    // 处理复选课事件
+    if (eventData.checkboxes) {
+        renderCheckboxes(eventData);
+        return;
+    }
     // 处理选项
     if (eventData.choices && eventData.choices.length > 0) {
         eventData.choices.forEach(choice => {
@@ -931,6 +946,64 @@ function renderEvent(eventData) {
     }
 }
 
+
+// 渲染复选课选择界面
+function renderCheckboxes(eventData) {
+    UI.eventTitle.textContent = eventData.title || '';
+    UI.eventDescription.textContent = eventData.description || '';
+    UI.eventChoices.innerHTML = '';
+    UI.eventInputArea.style.display = 'none';
+
+    const config = eventData.checkboxes;
+    
+    // 渲染所有复选课选项
+    config.options.forEach(opt => {
+        const label = document.createElement('label');
+        label.className = 'checkbox-option';
+        label.innerHTML = `
+            <input type="checkbox" name="elective" value="${opt.name}">
+            <span class="checkbox-icon">${opt.icon}</span>
+            <span class="checkbox-name">${opt.name}</span>
+            <span class="checkbox-desc">${opt.desc}</span>
+        `;
+        UI.eventChoices.appendChild(label);
+    });
+    
+    // 提交按钮
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = config.confirm_text || '确认提交';
+    submitBtn.addEventListener('click', () => {
+        const checked = document.querySelectorAll('input[name="elective"]:checked');
+        const selected = Array.from(checked).map(cb => cb.value);
+        
+        if (selected.length < (config.min_select || 0)) {
+            alert(`请至少选择 ${config.min_select} 门选修课`);
+            return;
+        }
+        if (config.max_select && selected.length > config.max_select) {
+            alert(`最多只能选择 ${config.max_select} 门选修课`);
+            return;
+        }
+        
+        // 写入玩家数据
+        GameState.player.electives = selected;
+        if (!GameState.player.tags.includes('已选课')) {
+            GameState.player.tags.push('已选课');
+        }
+        if (!GameState.player.completedEvents.includes(eventData.id)) {
+            GameState.player.completedEvents.push(eventData.id);
+        }
+        updatePlayerUI();
+        saveGame();
+        
+        // 推进流程
+        advanceAfterEvent(eventData);
+    });
+    UI.eventChoices.appendChild(submitBtn);
+}
+
+
+// 处理事件输入（如序章输入名字）
 function handleEventInput(eventData, value) {
     if (eventData.input?.key === 'player_name') {
         GameState.player.name = value;
@@ -978,21 +1051,43 @@ function handleEventChoice(eventData, choice) {
             renderSubChoices(eventData, actualFollowUp);
             return;
         }
+        // 出成绩事件：直接弹出成绩单，跳过"继续"按钮
+        if (eventData.id === 'exam_phase2') {
+            showReportCard();
+            document.getElementById('btn-close-report-card').onclick = () => {
+                document.getElementById('report-card-modal').style.display = 'none';
+                advanceAfterEvent(eventData);
+            };
+            return;
+        }
         showFollowUpDescription(actualFollowUp, eventData);
         return;
     }
 
     // 没有 follow_up，直接进入下一阶段
     if (eventData.phase === 'daily') {
-        // daily 事件结束后直接检查主线事件
         proceedToEvent();
     } else if (eventData.phase === 'prologue') {
         proceedPrologue();
     } else if (eventData.phase === 'main_story') {
-        // 主故事事件结束后，重新检测是否有下一阶段事件
         proceedToEvent();
-    } else if (eventData._isHoliday || eventData.phase === 'exam' || eventData.phase === 'holiday' || eventData.phase === 'main_story') {
-        advanceWeekSafely();
+    } else if (eventData.phase === 'holiday' || eventData.phase === 'exam' || eventData._isHoliday) {
+        proceedToEvent();
+    } else {
+        startNextWeek();
+    }
+}
+
+// 处理事件结束后的推进逻辑
+function advanceAfterEvent(eventData) {
+    if (eventData.phase === 'daily') {
+        proceedToEvent();
+    } else if (eventData.phase === 'prologue') {
+        proceedPrologue();
+    } else if (eventData.phase === 'main_story') {
+        proceedToEvent();
+    } else if (eventData._isHoliday || eventData.phase === 'exam' || eventData.phase === 'holiday') {
+        proceedToEvent();
     } else {
         startNextWeek();
     }
@@ -1016,18 +1111,16 @@ function showFollowUpDescription(followUp, parentEvent) {
 
     const btn = document.createElement('button');
     btn.textContent = '继续';
+    // 如果是考试阶段，显示成绩单
     btn.addEventListener('click', () => {
-        // 继续流程
-        if (parentEvent.phase === 'daily') {
-            proceedToEvent();
-        } else if (parentEvent.phase === 'prologue') {
-            proceedPrologue();
-        } else if (parentEvent.phase === 'main_story') {
-            proceedToEvent();
-        } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
-            advanceWeekSafely();
+        if (parentEvent.id === 'exam_phase2') {
+            showReportCard();
+            document.getElementById('btn-close-report-card').onclick = () => {
+                document.getElementById('report-card-modal').style.display = 'none';
+                advanceAfterEvent(parentEvent);
+            };
         } else {
-            startNextWeek();
+            advanceAfterEvent(parentEvent);
         }
     });
     UI.eventChoices.appendChild(btn);
@@ -1082,8 +1175,8 @@ function renderSubChoices(parentEvent, followUp) {
                                 proceedPrologue();
                             } else if (parentEvent.phase === 'main_story') {
                                 proceedToEvent();
-                            } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
-                                advanceWeekSafely();
+                            } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday') {
+                                proceedToEvent();
                             } else {
                                 startNextWeek();
                             }
@@ -1104,8 +1197,8 @@ function renderSubChoices(parentEvent, followUp) {
                             proceedPrologue();
                         } else if (parentEvent.phase === 'main_story') {
                             proceedToEvent();
-                        } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday' || parentEvent.phase === 'main_story') {
-                            advanceWeekSafely();
+                        } else if (parentEvent._isHoliday || parentEvent.phase === 'exam' || parentEvent.phase === 'holiday') {
+                            proceedToEvent();
                         } else {
                             startNextWeek();
                         }
@@ -1127,16 +1220,13 @@ function handleEventEnd(eventData) {
     }
 
     if (eventData.phase === 'daily') {
-        // daily 事件结束后直接检查主线事件
         proceedToEvent();
     } else if (eventData.phase === 'prologue') {
         proceedPrologue();
     } else if (eventData.phase === 'main_story') {
-        // 主故事事件结束后，重新检测是否有下一阶段事件
         proceedToEvent();
-    } else if (eventData._isHoliday || eventData.phase === 'exam' || eventData.phase === 'holiday') {
-        // 假期或考试事件结束后，安全推进时间
-        advanceWeekSafely();
+    } else if (eventData.phase === 'holiday' || eventData.phase === 'exam' || eventData._isHoliday) {
+        proceedToEvent();
     } else {
         startNextWeek();
     }
@@ -1348,6 +1438,11 @@ function bindEvents() {
         coursePageIndex++;
         renderCourses();
     });
+
+    // 成绩单弹窗关闭
+    document.getElementById('btn-close-report-card').addEventListener('click', () => {
+        document.getElementById('report-card-modal').style.display = 'none';
+    });
 }
 
 function renderRelationships() {
@@ -1400,8 +1495,10 @@ const coursesPerPage = 8; // 每页显示4门课
 function renderCourses() {
     const list = document.getElementById('courses-list');
     list.innerHTML = '';
+
+    const p = GameState.player; // 加上这一行来定义玩家数据
     
-    const allCourses = [
+    const requiredCourses = [
         { name: '魔咒学', icon: '🪄' },
         { name: '变形术', icon: '🦎' },
         { name: '魔药学', icon: '🧪' },
@@ -1411,7 +1508,20 @@ function renderCourses() {
         { name: '天文学', icon: '🌌' },
         { name: '飞行课', icon: '🧹' }
     ];
-    
+
+    const electiveOptions = [
+    { name: '算术占卜', icon: '🔢' },
+    { name: '古代魔文', icon: '📖' },
+    { name: '神奇生物保护', icon: '🐉' },
+    { name: '占卜学', icon: '🔮' },
+    { name: '麻瓜研究', icon: '🧑‍💼' }
+    ];
+
+    let allCourses = [...requiredCourses];
+    if (p.schoolYear >= 3 && p.electives && p.electives.length > 0) {
+        const selectedElectives = electiveOptions.filter(e => p.electives.includes(e.name));
+        allCourses = allCourses.concat(selectedElectives);
+    }
     // 计算总页数
     const totalPages = Math.ceil(allCourses.length / coursesPerPage);
     
@@ -1440,6 +1550,162 @@ function renderCourses() {
     document.getElementById('btn-course-prev').disabled = (coursePageIndex === 0);
     document.getElementById('btn-course-next').disabled = (coursePageIndex >= totalPages - 1);
 }
+
+
+
+
+
+// ---------- 成绩计算 ----------
+function getGrade(score, year) {
+    const thresholds = {
+        1: { O: 70, E: 55, A: 40, P: 25, D: 10 },
+        2: { O: 85, E: 65, A: 50, P: 35, D: 20 },
+        3: { O: 100, E: 80, A: 60, P: 45, D: 30 },
+        4: { O: 115, E: 95, A: 70, P: 55, D: 40 },
+        5: { O: 130, E: 110, A: 85, P: 70, D: 50 },
+        6: { O: 150, E: 125, A: 100, P: 85, D: 60 },
+        7: { O: 170, E: 145, A: 115, P: 100, D: 75 }
+    };
+    
+    const t = thresholds[year] || thresholds[1];
+    
+    if (score >= t.O) return 'O';
+    if (score >= t.E) return 'E';
+    if (score >= t.A) return 'A';
+    if (score >= t.P) return 'P';
+    if (score >= t.D) return 'D';
+    return 'T';
+}
+
+
+// ---------- 成绩单文本生成 ----------
+function getReportComment(avg, year, bestSubject, worstSubject) {
+    const comments = {
+        1: [
+            { min: 55, text: `你在霍格沃茨的第一年表现出色！${bestSubject}是你最擅长的领域——教授们已经注意到你的天赋了。暑假之后，你就是二年级的学生了。` },
+            { min: 40, text: `一年级顺利结束。${bestSubject}是你的强项，${worstSubject}还需要多加练习。但总体来说，你已经适应了霍格沃茨的节奏。` },
+            { min: 0,  text: `第一年有些坎坷，但没关系。霍格沃茨看重的不只是成绩——你在这一年里交到的朋友、经历的冒险，比分数更宝贵。` }
+        ],
+        2: [
+            { min: 65, text: `二年级的表现比去年更加成熟。${bestSubject}是你最稳定的科目，教授们对你印象深刻。你在霍格沃茨已经找到了自己的节奏。` },
+            { min: 50, text: `二年级顺利结束。${bestSubject}保持了不错的水平，${worstSubject}需要在下学期多花些时间。但你已经不是那个刚入学的新生了。` },
+            { min: 0,  text: `第二年有些起伏，但你在进步。别忘了二年级时你经历的那些冒险——有些东西是成绩单无法衡量的。` }
+        ],
+        3: [
+            { min: 80, text: `三年级的学业更加繁重，但你应对得很好。${bestSubject}是你的强项，你在选修课上的表现也令人满意。你开始找到自己真正的兴趣所在了。` },
+            { min: 60, text: `三年级顺利结束。新增的选修课让课表更加丰富，${bestSubject}表现不错。${worstSubject}方面可以多向教授请教。` },
+            { min: 0,  text: `三年级有些挑战，但这是成长的必经之路。你在选修课上可能还没找到最适合自己的方向——没关系，还有时间。` }
+        ],
+        4: [
+            { min: 95, text: `四年级的表现令人瞩目。${bestSubject}的成绩尤其突出，你已经展现出了在某些领域的专长。明年的O.W.L.值得期待。` },
+            { min: 70, text: `四年级平稳度过。${bestSubject}是你最稳定的科目。明年就是O.W.L.年了，暑期可以开始提前准备。` },
+            { min: 0,  text: `四年级有些波折，但你在进步。O.W.L.就在明年——利用暑期好好规划一下你需要重点复习的科目。` }
+        ],
+        5: [
+            { min: 110, text: `O.W.L.成绩优异！${bestSubject}的表现尤为突出，这会为你六年级的N.E.W.T.选课打开很多门。你已经有资格在多个领域继续深造了。` },
+            { min: 85, text: `O.W.L.顺利通过。${bestSubject}达到了预期水平，你已经确定了六年级要继续深造的科目。这是一个重要的里程碑。` },
+            { min: 0,  text: `O.W.L.的成绩有些遗憾，但这不意味着道路的终结。你在${bestSubject}方面有潜力，集中精力在你真正热爱的科目上。` }
+        ],
+        6: [
+            { min: 125, text: `六年级的表现证明了你已经在自己选择的领域站稳了脚跟。${bestSubject}是你的强项，N.E.W.T.的准备工作正在稳步推进。` },
+            { min: 100, text: `六年级顺利结束。${bestSubject}保持了一贯的水准。N.E.W.T.的最后冲刺就在明年——你已经准备好了。` },
+            { min: 0,  text: `六年级有些起伏，但N.E.W.T.还有一年。专注于你选择的科目，利用暑期巩固基础。` }
+        ],
+        7: [
+            { min: 145, text: `N.E.W.T.成绩辉煌。${bestSubject}的表现足以让任何雇主或研究机构对你刮目相看。你在霍格沃茨的七年学业以卓越的成绩画上了句号。无论你选择什么道路，这份成绩单都是你最好的证明。` },
+            { min: 115, text: `N.E.W.T.成绩令人满意。${bestSubject}达到了优秀水平，你的七年霍格沃茨学业圆满结束。这份成绩单足以支持你走向下一步——无论是职业还是继续深造。` },
+            { min: 0,  text: `N.E.W.T.的成绩也许不如预期，但七年的霍格沃茨生活给了你远比分数更宝贵的东西。你在城堡里交到的朋友、经历的冒险、学会的勇气——这些不会因为成绩而改变。` }
+        ]
+    };
+    
+    const yearComments = comments[year] || comments[1];
+    for (const c of yearComments) {
+        if (avg >= c.min) return c.text;
+    }
+    return yearComments[yearComments.length - 1].text;
+}
+
+
+// ---------- 成绩单渲染 ----------
+function showReportCard() {
+    const p = GameState.player;// 获取玩家数据
+    
+    // 设置学年信息
+    document.getElementById('report-card-year').textContent = 
+        `${p.year}年 第${p.schoolYear}学年`;
+    
+    // 必修课
+    const requiredCourses = [
+        { name: '魔咒学', icon: '🪄' },
+        { name: '变形术', icon: '🦎' },
+        { name: '魔药学', icon: '🧪' },
+        { name: '草药学', icon: '🌿' },
+        { name: '黑魔法防御术', icon: '🔮' },
+        { name: '魔法史', icon: '📜' },
+        { name: '天文学', icon: '🌌' },
+        { name: '飞行课', icon: '🧹' }
+    ];
+    
+    // 选修课（三年级起，只显示玩家选过的）
+    const electiveOptions = [
+        { name: '算术占卜', icon: '🔢' },
+        { name: '古代魔文', icon: '📖' },
+        { name: '神奇生物保护', icon: '🐉' },
+        { name: '占卜学', icon: '🔮' },
+        { name: '麻瓜研究', icon: '🧑‍💼' }
+    ];
+    
+    let allCourses = [...requiredCourses];
+    if (p.schoolYear >= 3 && p.electives && p.electives.length > 0) {
+        const selectedElectives = electiveOptions.filter(e => p.electives.includes(e.name));
+        allCourses = allCourses.concat(selectedElectives);
+    }
+    
+    // 渲染成绩单
+    const list = document.getElementById('report-card-list');
+    list.innerHTML = '';
+    
+    let totalScore = 0;
+    let gradeCount = 0;
+    let bestSubject = '';
+    let bestScore = 0;
+    let worstSubject = '';
+    let worstScore = Infinity;
+    
+    allCourses.forEach(s => {
+        const rawScore = p.courses?.[s.name] || 0;
+        const grade = getGrade(rawScore, p.schoolYear);
+        
+        totalScore += rawScore;
+        gradeCount++;
+        
+        if (rawScore > bestScore) {
+            bestScore = rawScore;
+            bestSubject = s.name;
+        }
+        if (rawScore < worstScore) {
+            worstScore = rawScore;
+            worstSubject = s.name;
+        }
+        
+        const row = document.createElement('div');
+        row.className = 'report-row';
+        row.innerHTML = `
+            <span class="report-subject">${s.icon} ${s.name}</span>
+            <span class="report-grade ${grade}">${grade}</span>
+        `;
+        list.appendChild(row);
+    });
+    
+    // 生成总评
+    const avg = gradeCount > 0 ? totalScore / gradeCount : 0;
+    const comment = getReportComment(avg, p.schoolYear, bestSubject, worstSubject);
+    document.getElementById('report-card-comment').textContent = comment;
+    document.getElementById('report-card-modal').style.display = 'flex';
+}
+
+
+
 
 // ---------- 启动游戏 ----------
 window.addEventListener('DOMContentLoaded', () => {

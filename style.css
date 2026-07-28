@@ -709,6 +709,150 @@ body {
 }
 
 
+/* 成绩单弹窗 */
+#report-card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#report-card-content {
+    background-color: #16213e;
+    border: 2px solid #4a3f35;
+    border-radius: 8px;
+    padding: 24px;
+    min-width: 340px;
+    max-width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#report-card-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4a3f35;
+    padding-bottom: 12px;
+}
+
+#report-card-header h3 {
+    color: #d4af37;
+    margin: 0 0 4px 0;
+}
+
+#report-card-year {
+    color: #a89b8c;
+    font-size: 13px;
+    margin: 0;
+}
+
+.report-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.report-row:last-child {
+    border-bottom: none;
+}
+
+.report-subject {
+    font-size: 15px;
+    color: #e0d5c1;
+}
+
+.report-grade {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.report-grade.O { color: #ffd700; }
+.report-grade.E { color: #8bc98a; }
+.report-grade.A { color: #e0d5c1; }
+.report-grade.P { color: #c9a86c; }
+.report-grade.D { color: #c98a8a; }
+.report-grade.T { color: #888; }
+
+#report-card-comment {
+    color: #c9b896;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2a4a;
+    line-height: 1.6;
+}
+
+#btn-close-report-card {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    background-color: #0f3460;
+    color: #e0d5c1;
+    border: 1px solid #4a3f35;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+#btn-close-report-card:hover {
+    background-color: #1a4a7a;
+}
+
+
+/* 复选课选项样式 */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    background-color: #0f3460;
+    border: 1px solid #4a3f35;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkbox-option:hover {
+    background-color: #1a4a7a;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #d4af37;
+}
+
+.checkbox-icon {
+    font-size: 20px;
+}
+
+.checkbox-name {
+    font-size: 14px;
+    color: #e0d5c1;
+    font-weight: bold;
+    white-space: nowrap;   /* 新增：防止换行 */
+    flex-shrink: 1;        /* 新增：空间不足时允许收缩 */
+}
+
+.checkbox-desc {
+    font-size: 13px;
+    color: #a89b8c;
+    margin-left: auto;
+}
+
 
 /* ==================== 响应式 ==================== */
 @media (max-width: 480px) {
