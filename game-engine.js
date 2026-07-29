@@ -111,13 +111,23 @@ function loadPlayerState() {
     }
     // 根据 npcs.json 自动初始化所有 NPC 的关系
     Object.keys(NPCs).forEach(npcId => {
-        if (!GameState.player.relationships[npcId]) {
-            GameState.player.relationships[npcId] = {
-                affection: 0,
-                tags: []
-            };
-        }
+    const npc = NPCs[npcId];
+    
+    // 跳过尚未入学的NPC（year_offset 为负，且玩家年级还不够）
+    if (npc.year_offset !== undefined && npc.year_offset < 0) {
+        // 例如 year_offset = -1，玩家需要至少 2 年级才能遇到她
+        const requiredYear = 1 - npc.year_offset;
+        if (GameState.player.schoolYear < requiredYear) return;
+    }
+    
+    if (!GameState.player.relationships[npcId]) {
+        GameState.player.relationships[npcId] = {
+            affection: 0,
+            tags: []
+        };
+    }
     });
+    // 初始化本周计划和已用行动点
     GameState.weeklyPlan = [];
     GameState.usedActionPoints = 0;
     GameState.currentPrologueIndex = 0;
@@ -340,6 +350,21 @@ function skipWeek() {
 
 
 
+// 获取总结文本，优先使用按次数+年级分级的 summaries 字段
+function getSummary(dir, count) {
+    if (!dir) return '你在这里度过了一段时光。';
+    // 如果有按次数+年级分级的总结文本
+    if (dir.summaries) {
+        const countKey = Math.min(count, 5).toString();
+        const yearKey = GameState.player.schoolYear.toString();
+        if (dir.summaries[countKey] && dir.summaries[countKey][yearKey]) {
+            return dir.summaries[countKey][yearKey];
+        }
+    }
+    // 回退到旧的 summary 字段
+    if (dir.summary) return dir.summary;
+    return '你在这里度过了一段时光。';
+}
 
 
 // 确认本周计划，进入结算
@@ -383,7 +408,7 @@ function confirmPlan() {
         summaryDiv.className = 'summary-entry';
         summaryDiv.innerHTML = `
             <div class="summary-title">${loc?.icon || ''} ${loc?.name || entry.locationId} ${dir?.name || entry.directionId} ×${entry.count}</div>
-            <div class="summary-text">${dir?.summary || '你在这里度过了一段时光。'}</div>
+            <div class="summary-text">${getSummary(dir, entry.count)}</div>
         `;
         UI.summaryList.appendChild(summaryDiv);
     });
@@ -665,6 +690,25 @@ function checkTriggerCondition(condition) {
     }
 
 
+    // 检查某属性是否为最高值
+    if (condition.attribute_comparison) {
+        const attr = condition.attribute_comparison;
+        const a = p.attributes;
+        const maxVal = Math.max(a.courage, a.wisdom, a.charm, a.cunning);
+        
+        if (attr === 'courage_highest' && a.courage < maxVal) return false;
+        if (attr === 'wisdom_highest' && a.wisdom < maxVal) return false;
+        if (attr === 'charm_highest' && a.charm < maxVal) return false;
+        if (attr === 'cunning_highest' && a.cunning < maxVal) return false;
+        
+        // 如果有多个属性并列最高，只让第一个匹配的通过
+        // 按勇气 > 智慧 > 魅力 > 狡黠的优先级
+        if (attr === 'wisdom_highest' && a.courage === maxVal && a.wisdom === maxVal) return false;
+        if (attr === 'charm_highest' && (a.courage === maxVal || a.wisdom === maxVal) && a.charm === maxVal) return false;
+        if (attr === 'cunning_highest' && (a.courage === maxVal || a.wisdom === maxVal || a.charm === maxVal) && a.cunning === maxVal) return false;
+    }
+
+
     return true;
 }
 
@@ -825,13 +869,10 @@ function renderEvent(eventData) {
     // 处理 description 是数组的函数（支持嵌套）
     function resolveDescription(desc) {
         if (Array.isArray(desc)) {
-            const validVariants = desc.filter(v => {
+            const matched = desc.find(v => {
                 return !v.condition || checkTriggerCondition(v.condition);
             });
-            if (validVariants.length > 0) {
-                const chosen = validVariants[Math.floor(Math.random() * validVariants.length)];
-                return chosen.text;
-            }
+            if (matched) return matched.text;
             return '';
         }
         return desc;
@@ -861,17 +902,27 @@ function renderEvent(eventData) {
         }));
     }
     // 支持描述变体（description_variants）
+    // description_variants：条件互斥，取第一个匹配的变体
     if (eventData.description_variants) {
-        // 筛选满足条件的变体
-        const validVariants = eventData.description_variants.filter(v => {
-            return !v.condition || checkTriggerCondition(v.condition);
-        });
-        // 随机选一个
+        const matched = eventData.description_variants.find(v => 
+            !v.condition || checkTriggerCondition(v.condition)
+        );
+        if (matched) {
+            eventData.description = matched.text;
+        }
+    }
+
+    // description_random：随机变体，从候选中随机选一个
+    if (eventData.description_random) {
+        const validVariants = eventData.description_random.filter(v => 
+            !v.condition || checkTriggerCondition(v.condition)
+        );
         if (validVariants.length > 0) {
             const chosen = validVariants[Math.floor(Math.random() * validVariants.length)];
             eventData.description = chosen.text;
         }
     }
+
     UI.eventTitle.textContent = eventData.title || '';
     UI.eventDescription.textContent = eventData.description || '';
     UI.eventChoices.innerHTML = '';
@@ -1119,6 +1170,16 @@ function showFollowUpDescription(followUp, parentEvent) {
                 document.getElementById('report-card-modal').style.display = 'none';
                 advanceAfterEvent(parentEvent);
             };
+        // 有嵌套的 follow_up，继续展示
+        } else if (followUp.follow_up) {
+        if (followUp.follow_up.effect) {
+            applyEffect(followUp.follow_up.effect);
+        }
+        if (followUp.follow_up.sub_choices) {
+            renderSubChoices(parentEvent, followUp.follow_up);
+        } else {
+            showFollowUpDescription(followUp.follow_up, parentEvent);
+        }
         } else {
             advanceAfterEvent(parentEvent);
         }
@@ -1137,6 +1198,16 @@ function renderSubChoices(parentEvent, followUp) {
         const btn = document.createElement('button');
         btn.textContent = sub.text;
         
+
+        // 如果子选项有 description_variants，先筛选匹配的变体
+        let subDescription = sub.description || '';
+        if (sub.description_variants && Array.isArray(sub.description_variants)) {
+            const matched = sub.description_variants.find(v => 
+                !v.condition || checkTriggerCondition(v.condition)
+            );
+            if (matched) subDescription = matched.text;
+        }
+        
         // 检查子选项条件
         if (sub.condition && !checkTriggerCondition(sub.condition)) {
             btn.disabled = true;
@@ -1151,9 +1222,9 @@ function renderSubChoices(parentEvent, followUp) {
                 updatePlayerUI();
                 
                 // 如果子选项有描述，先展示描述文本
-                if (sub.description) {
+                if (subDescription) {
                     UI.eventTitle.textContent = parentEvent.title || '';
-                    UI.eventDescription.textContent = sub.description;
+                    UI.eventDescription.textContent = subDescription;
                     UI.eventChoices.innerHTML = '';
                     UI.eventInputArea.style.display = 'none';
                     
@@ -1407,11 +1478,21 @@ function bindEvents() {
 
     // 人际关系面板
     document.getElementById('btn-relationships').addEventListener('click', () => {
+        relPageIndex = 0;
         renderRelationships();
         document.getElementById('relationships-modal').style.display = 'flex';
     });
     document.getElementById('btn-close-relationships').addEventListener('click', () => {
         document.getElementById('relationships-modal').style.display = 'none';
+    });
+    // 好感度翻页按钮
+    document.getElementById('btn-rel-prev').addEventListener('click', () => {
+        relPageIndex--;
+        renderRelationships();
+    });
+    document.getElementById('btn-rel-next').addEventListener('click', () => {
+        relPageIndex++;
+        renderRelationships();
     });
 
     // 课堂页面按钮
@@ -1445,6 +1526,11 @@ function bindEvents() {
     });
 }
 
+
+// ---------- 人际关系渲染 ----------
+let relPageIndex = 0;
+const relsPerPage = 4;
+
 function renderRelationships() {
     const list = document.getElementById('relationships-list');
     list.innerHTML = '';
@@ -1452,24 +1538,44 @@ function renderRelationships() {
     const houseIcons = { '格兰芬多': '🦁', '斯莱特林': '🐍', '赫奇帕奇': '🦡', '拉文克劳': '🦅' };
     
     const rels = GameState.player.relationships;
-    Object.entries(rels).forEach(([npcId, data]) => {
+    const entries = Object.entries(rels);
+    
+    // 过滤掉尚未入学的NPC（year_offset 为负且玩家年级不够）
+    const visibleEntries = entries.filter(([npcId]) => {
+        const npc = NPCs[npcId];
+        if (!npc) return false;
+        if (npc.year_offset !== undefined && npc.year_offset < 0) {
+            const requiredYear = 1 - npc.year_offset;
+            if (GameState.player.schoolYear < requiredYear) return false;
+        }
+        return true;
+    });
+    
+    // 计算总页数
+    const totalPages = Math.ceil(visibleEntries.length / relsPerPage);
+    if (relPageIndex >= totalPages) relPageIndex = Math.max(0, totalPages - 1);
+    if (relPageIndex < 0) relPageIndex = 0;
+    
+    // 当前页的NPC
+    const start = relPageIndex * relsPerPage;
+    const end = Math.min(start + relsPerPage, visibleEntries.length);
+    const pageEntries = visibleEntries.slice(start, end);
+    
+    pageEntries.forEach(([npcId, data]) => {
         const npc = NPCs[npcId];
         if (!npc) return;
         
         const row = document.createElement('div');
         row.className = 'npc-row';
         
-        // 好感度颜色
         let affectionClass = 'neutral';
         if (data.affection >= 30) affectionClass = 'positive';
         else if (data.affection <= -10) affectionClass = 'negative';
         
-        // 标签显示
         const tagDisplay = data.tags.length > 0 
             ? data.tags.map(t => `【${t}】`).join(' ') 
             : '';
         
-        // 学院图标
         const icon = houseIcons[npc.house] || '';
         
         row.innerHTML = `
@@ -1479,6 +1585,10 @@ function renderRelationships() {
         `;
         list.appendChild(row);
     });
+    
+    // 更新翻页按钮状态
+    document.getElementById('btn-rel-prev').disabled = (relPageIndex === 0);
+    document.getElementById('btn-rel-next').disabled = (relPageIndex >= totalPages - 1);
 }
 
 // ---------- 获取课程成绩 ----------

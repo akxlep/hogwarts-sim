@@ -3,7 +3,7 @@
         "id": "harry_potter",
         "name": "哈利·波特",
         "house": "格兰芬多",
-        "year": 1,
+        "year_offset": 0,
         "identity": "大难不死的男孩·找球手",
         "personality": "勇敢、重情义、厌恶被特殊对待、偶尔冲动、对朋友极度忠诚",
         "likes": ["魁地奇", "隐形衣夜游", "和罗恩赫敏待在一起"],
@@ -21,7 +21,7 @@
         "id": "ron_weasley",
         "name": "罗恩·韦斯莱",
         "house": "格兰芬多",
-        "year": 1,
+        "year_offset": 0,
         "identity": "纯血统穷小子·韦斯莱家第六子",
         "personality": "幽默、爱吃、偶尔自卑、忠诚但有嫉妒心、关键时刻从不退缩",
         "likes": ["巫师棋", "魁地奇", "妈妈的料理", "吐槽斯内普"],
@@ -39,7 +39,7 @@
         "id": "hermione_granger",
         "name": "赫敏·格兰杰",
         "house": "格兰芬多",
-        "year": 1,
+        "year_offset": 0,
         "identity": "年级第一学霸·麻瓜出身",
         "personality": "聪明绝顶、正义感强、有些唠叨、脆弱时躲起来哭、对规则既遵守又打破",
         "likes": ["图书馆", "回答问题", "帮助弱者", "制定复习计划"],
@@ -57,7 +57,7 @@
         "id": "draco_malfoy",
         "name": "德拉科·马尔福",
         "house": "斯莱特林",
-        "year": 1,
+        "year_offset": 0,
         "identity": "纯血统家族继承人·斯莱特林找球手",
         "personality": "傲慢、渴望父亲认可、欺软怕硬但非真正残忍、内心有不安全感",
         "likes": ["炫耀家族财富", "打击哈利及其朋友", "被关注"],
@@ -70,5 +70,132 @@
             "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
             "恋爱": { "required_tag": "羁绊", "affection_min": 60, "trigger_event": true }
         }
+    },
+    {
+    "id": "ginny_weasley",
+    "name": "金妮·韦斯莱",
+    "house": "格兰芬多",
+    "year_offset": -1,
+    "identity": "韦斯莱家最小的孩子·未来的格兰芬多找球手",
+    "personality": "活泼、勇敢、有些害羞（在哈利面前）、后期变得自信果断",
+    "likes": ["魁地奇", "偷偷练习飞行", "哥哥们的恶作剧"],
+    "dislikes": ["被当成小女孩", "汤姆·里德尔的日记", "被当成弱者"],
+    "secret": "一年级时被汤姆·里德尔的日记控制，打开了密室",
+    "daily_locations": ["great_hall", "quidditch_pitch", "corridor", "gryffindor_common_room"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 75, "trigger_event": true }
     }
+},
+{
+    "id": "pansy_parkinson",
+    "name": "潘西·帕金森",
+    "house": "斯莱特林",
+    "year_offset": 0,
+    "identity": "德拉科的密友·斯莱特林女生中的核心人物",
+    "personality": "尖刻、骄傲、对德拉科有好感、在关键时刻会退缩",
+    "likes": ["纯血统社交圈", "嘲讽格兰芬多", "和德拉科待在一起"],
+    "dislikes": ["麻瓜出身者", "被忽视", "被拿来和别人比较"],
+    "secret": "大战前曾提议交出哈利——这件事后来成为她的耻辱",
+    "daily_locations": ["great_hall", "corridor", "slytherin_common_room"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 70, "trigger_event": true }
+    }
+},
+{
+    "id": "blaise_zabini",
+    "name": "布雷斯·扎比尼",
+    "house": "斯莱特林",
+    "year_offset": 0,
+    "identity": "纯血统·优雅的旁观者",
+    "personality": "优雅、冷淡、沉默寡言、有自己的底线、不盲从",
+    "likes": ["独处", "阅读", "保持距离观察他人"],
+    "dislikes": ["被拉入他不关心的争端", "被当成德拉科的跟班", "被期待站队"],
+    "secret": "他对纯血统极端主义不感兴趣——但他从不公开表态",
+    "daily_locations": ["great_hall", "library", "corridor", "slytherin_common_room"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 75, "trigger_event": true }
+    }
+},
+{
+    "id": "theodore_nott",
+    "name": "西奥多·诺特",
+    "house": "斯莱特林",
+    "year_offset": 0,
+    "identity": "纯血统·食死徒之子",
+    "personality": "安静、孤僻、喜欢独处、对黑魔法有复杂的情感",
+    "likes": ["独自研究魔咒", "在安静的地方看书", "远离争吵"],
+    "dislikes": ["被拿来和他父亲比较", "被迫参与他不认同的事", "引人注目"],
+    "secret": "他父亲的食死徒身份让他承受了很多压力——他从未告诉任何人他是否认同父亲的道路",
+    "daily_locations": ["library", "corridor", "slytherin_common_room"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 70, "trigger_event": true }
+    }
+},
+{
+    "id": "luna_lovegood",
+    "name": "卢娜·洛夫古德",
+    "house": "拉文克劳",
+    "year_offset": -1,
+    "identity": "《唱唱反调》主编的女儿·独特的世界观",
+    "personality": "独特、坦诚、不怕被嘲笑、对朋友极度忠诚",
+    "likes": ["神奇生物", "和少数几个朋友待在一起", "相信那些被认为不存在的东西"],
+    "dislikes": ["被欺负", "被叫作疯姑娘", "看到别人被欺负"],
+    "secret": "她能看到夜骐——因为她亲眼目睹了母亲的死亡",
+    "daily_locations": ["great_hall", "corridor", "forbidden_forest"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 70, "trigger_event": true }
+    }
+},
+{
+    "id": "cho_chang",
+    "name": "秋·张",
+    "house": "拉文克劳",
+    "year_offset": 1,
+    "identity": "拉文克劳找球手·优雅而坚韧",
+    "personality": "优雅、温柔、情感丰富、在塞德里克死后经历巨大创伤",
+    "likes": ["魁地奇", "和朋友们在一起", "安静的独处"],
+    "dislikes": ["被拿来比较", "被迫做出她无法做出的选择", "被当成脆弱的象征"],
+    "secret": "塞德里克的死对她的影响比任何人看到的都更深",
+    "daily_locations": ["great_hall", "quidditch_pitch", "corridor"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 75, "trigger_event": true }
+    }
+},
+{
+    "id": "cedric_diggory",
+    "name": "塞德里克·迪戈里",
+    "house": "赫奇帕奇",
+    "year_offset": 3,
+    "identity": "赫奇帕奇找球手兼级长·三强争霸赛霍格沃茨代表",
+    "personality": "正直、谦逊、勇敢、对任何人都不摆架子",
+    "likes": ["魁地奇", "帮助低年级学生", "公平竞争"],
+    "dislikes": ["不公平", "利用规则漏洞", "看到别人被欺负"],
+    "secret": "他对胜利的渴望比任何人看到的都强——但他从不让这影响他的正直",
+    "daily_locations": ["great_hall", "quidditch_pitch", "corridor"],
+    "tag_thresholds": {
+        "羁绊": { "affection_min": 50, "trigger_event": true },
+        "对手": { "trigger_event": true },
+        "亦敌亦友": { "required_tag": "对手", "trigger_event": true },
+        "恋爱": { "required_tag": "羁绊", "affection_min": 75, "trigger_event": true }
+    }
+}
+
 ]

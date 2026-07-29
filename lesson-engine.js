@@ -117,9 +117,9 @@ function selectWeeklyLessons() {
     
     if (availableSubjects.length === 0) return [];
     
-    // 4. 随机决定本周抽取几门课（3-5门，但不能超过可用课程数）
-    const maxCount = Math.min(5, availableSubjects.length);
-    const minCount = Math.min(3, availableSubjects.length);
+    // 4. 随机决定本周抽取几门课（2-3门，但不能超过可用课程数）
+    const maxCount = Math.min(3, availableSubjects.length);
+    const minCount = Math.min(2, availableSubjects.length);
     const count = Math.floor(Math.random() * (maxCount - minCount + 1)) + minCount;
     
     // 5. 随机选择本周的课程

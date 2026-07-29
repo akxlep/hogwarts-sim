@@ -7,7 +7,7 @@
     "weight": 3,
     "trigger_condition": {},
     "title": "图书馆的小插曲",
-    "description_variants": [
+    "description_random": [
         {
             "text": "一股甜腻的糖浆味飘了过来。你抬头，看到对面桌的赫奇帕奇男生正偷偷撕开一块糖浆馅饼的包装。平斯夫人像嗅到血腥味的鲨鱼一样冲了过来，把他赶了出去。"
         },
@@ -36,7 +36,7 @@
     "weight": 2,
     "trigger_condition": {},
     "title": "一本不太安分的书",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你从书架上抽出一本《妖怪们的妖怪书》，书脊在你手中蠕动，封面猛地张开，露出一排细密的牙齿。它咬了你的手指，然后安静下来，仿佛什么都没发生。"
         },
@@ -67,7 +67,7 @@
         "attribute": { "wisdom": { "min": 25 } }
     },
     "title": "会跳舞的字母",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你翻开一本旧版《标准咒语》，发现某一页的字母正在缓慢移动。它们像蚂蚁一样排成一行，然后突然散开，重新组合成一句话：“如果你读得懂，那这本书就太无聊了。”"
         },
@@ -99,7 +99,7 @@
         "attribute": { "wisdom": { "min": 20 } }
     },
     "title": "窗外有东西在动",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你正埋头抄写魔药配方，余光突然捕捉到窗外有什么在移动。黑湖的水面在月光下泛着银光。一只巨大的触手从水面下探出来，懒洋洋地拍了一下窗户玻璃，然后慢慢缩回去了。"
         },
@@ -161,11 +161,6 @@
 
 
 
-
-
-
-
-
 {
     "id": "library_explore_moving_shelf",
     "phase": "daily",
@@ -174,7 +169,7 @@
     "weight": 2,
     "trigger_condition": {},
     "title": "会移动的书架",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你伸手去够顶层的一本厚书，指尖刚碰到书脊，整个书架突然向左边滑动了半英寸。你吓了一跳，缩回手。书架又安静了。也许只是城堡在“呼吸”——但你在书架后面看到了一小段通往深处的楼梯，被灰尘覆盖着。"
         },
@@ -204,7 +199,7 @@
     "weight": 2,
     "trigger_condition": {},
     "title": "某人的涂鸦",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你翻开一本《标准咒语·初级》，发现某一页的页脚有一行潦草的字迹：“斯内普的魔药课——加一滴老鼠胆汁，不是两滴！！！切记！！！”笔迹压得很重，显然是在极度焦虑下写的。下面还有一行不同颜色的笔迹，写着“你救了我的命。——H.G.”。你盯着那行字看了一会儿，忍不住笑了一下。"
         },
@@ -231,7 +226,7 @@
     "weight": 2,
     "trigger_condition": {},
     "title": "被书咬了之后",
-    "description_variants": [
+    "description_random": [
         {
             "text": "你刚抽出一本《妖怪们的妖怪书》，它立刻张开书脊上的嘴，狠狠咬了一下你的拇指。你本能地把书摔在桌上。平斯夫人从远处投来一记眼刀。你赶紧把书翻过来，用一根散落的鞋带把它捆住。它安静了，但还在微微颤抖，像是在生气。"
         },
